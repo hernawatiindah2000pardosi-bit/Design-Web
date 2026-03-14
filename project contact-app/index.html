@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Kontak Anda</h1>
+
+<form id="contactForm">
+
+<input type="text" id="name" placeholder="Nama" required>
+
+<input type="text" id="phone" placeholder="Nomor Hp">
+
+<button type="submit" id="submitBtn">Tambah Kontak</button>
+
+</form>
+
+<input 
+type="text"
+id="search"
+placeholder="Cari kontak..."
+>
+
+<div id="contactList"></div>
+
+<p id="emptyState">
+    Belum Ada Kontak <br>
+    Masukkan Kontak Pertamamu!
+</p>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
