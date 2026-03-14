@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center> LENGKAPI FORMULIR </center>
+    <hr>
+    Bulan/Tanggal/Tahun:
+        <input type="date"><br><br>
+    <form name="Form1" method="post" action="'proses1.html"
+     enctype="application/x-www-form-urlencoded" runat="server">
+     <!-- Action = berisi URL atau lokasi file yang akan memproses data dari form-->
+      <!-- Method = berisi POST atau GET yaitu suatu aturan yang digunakan untuk mengirimkan data ke server-->
+       <!-- Enctype = mendefinisikan type encoding data-data yang diinput-->
+        <!-- Name = memberikan nama untuk form apabila dalam satu halaman terdapat 2 form yang berbeda-->
+    <!--Method GET, mengirimkan data pada server dengan cara 
+meletakkan data pada bagian akhir URL yang ditunjuk. -->
+     <!--Method POST, mengirimkan datanya secara terpisah.-->
+        Nama:
+    <input type="text" name="nama" placeholder="nama lengkap">
+    <!--text = untuk memungkinkan pengguna mengetikkan sesuatu-->
+     <!--placeholder = untuk memberikan informasi-->
+    <br>
+    Jenis kelamin:
+        <input type="radio" name="gender" value="pria">Pria
+        <input type="radio" name="gender" value="wanita">Wanita
+        <!--radio = menyuruh pengguna memilih salah satu dari beberapa opsi yang ada-->
+        <!--Value = memberikan isi dari sebuah input secara default, bebas pun boleh-->
+    </form>
+
+    <form name="Form2" method="get" action="proses2.html"
+    enctype="multipart/form-data">
+    Pendidikan:<br>
+        <input type="radio" name="pendidikan" value="SMA">SMA<br>
+        <input type="radio" name="pendidikan" value="MAHASISWA">MAHASISWA
+    </form>
+
+    <form name="Form3" method="post" action="proses3.html
+     enctype="text/plain">
+     Umur:
+        <input type="checkbox" name="umur" value="1">17 
+        <input type="checkbox" name="umur" value="1">18 
+        <input type="checkbox" name="umur" value="1">19 
+        <input type="checkbox" name="umur" value="1">20 <br>
+        <!--Checkbox = hampir sama seperti radio, yakni memilih opsi.
+        Bedanya checkbox bisa lebih dari satu opsi.-->
+        Email:
+        <input type="email" name="email" placeholder="email">
+    </form>
+
+</body>
+</html>

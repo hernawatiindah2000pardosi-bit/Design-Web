@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <center>Selamat Datang
+    <hr>
+    <form name="Form1" method="post" action="'proses1.html"
+     enctype="application/x-www-form-urlencoded" runat="server">
+     Username: 
+     <input type="username" name="user" placeholder="username"><br>
+     Password: 
+    <input type="password" name="sandi" placeholder="password"><br><br>
+    <font face="comic sans MS" color="red">Login setelah mengisi data selanjutnya</font>
+    </form>
+    
+   <hr>
+    </center>
+<form name="Form2" method="get" action="proses2.html"
+    enctype="multipart/form-data">
+    No HP:
+    <input type=’number’ name=’angka’ placeholder="angka"> <br>
+    Foto formal:
+     <input type="file" name="foto"> 
+    </form>
+
+    <form name="Form3" method="post" action="proses3.html
+     enctype="text/plain">
+     <input type="range" name="angka" min="1" max="5" value="3"><br>
+     Ulasan: <br>
+    <textarea cols='20' rows='6' placeholder='ulasan'></textarea><br>
+    <center><button>Login</button>
+    <input type="button" value="Daftar"> 
+<input type="Reset" value="Reset" name=""> </center>
+    </form>
+
+</body>
+</html>

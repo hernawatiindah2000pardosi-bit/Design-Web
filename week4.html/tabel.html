@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> <!--CELLPADDING digunakan untuk mengatur spasi antara border 
+dengan tulisan, sedangkan CELLSPACING digunakan untuk 
+mengatur spasi antar dua buah sel. -->
+    <table border="1" cellpadding="4" cellspacing="0" bordercolor="skyblue" width="100%" height="100"> 
+        <!--border itu untuk garis tabelnya-->   <!--jika ukuran menggunakan 100% maka browser dapat menyesuaikan seberapa lebar tabelnya-->
+        <caption>Mahasiswa TRPL</caption> <!--untuk judul tabel, jika ingin membuat judul tabel dibawah tambahkan 
+        align="bottom" dalam tag caption-->
+        <tr bgcolor="sky blue"> <!--bgcolor di tr membuat warna dalam satu baris-->
+            <th width="30%" height="30" align="left" valign="bottom">Nama</th> <!--jika bgcolornya hanya 
+            untuk di satu kolom, tambahkan bgcolor=" " di tag th/td-->
+            <th width="20%">NIM</th>
+            <th align="center">Kelas</th> <!--th untuk setiap judul kolom, judul akan terlihat Bold dan berada ditengah-->
+            <!--align: left,right,center jika valign: top,bottom, middle   ini berlaku untuk letak teksnya-->
+        </tr>
+          <!--th itu untuk judul Kolom/baris-->
+          <!--td itu untuk isi dari kolom-->
+        <tr>
+            <td align="center">Indah</td> <!--td juga untuk judul kolom tapi tidak Bold dan tdk berada ditengah tapi rata kiri-->
+            <td align="left">101010</td> 
+            <td>TRPL 1E</td>
+        </tr>
+    
+        <tr>
+            <td align="left">Herna</td>
+            <td align="right">101011</td>
+            <td align="center">TRPL 2E</td>
+        </tr>
+    </table>
+</body>
+</html>
