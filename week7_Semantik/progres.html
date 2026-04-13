@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Progress: digunakan untuk tugas yang sedang berjalan -->
+    <label for="upload">Mengupload file:</label>
+    <progress id="upload" value="65" max="100">65%</progress>
+
+    <!-- Progress indeterminate (tidak diketahui berapa lama) -->
+    <progress>Memuat...</progress>
+
+    <!-- Meter: pengukuran dalam rentang tertentu -->
+    <label for="kapasitas">Kapasitas disk:</label>
+    <meter id="kapasitas" value="0.7" min="0" max="1"
+        low="0.3" high="0.8" optimum="0.5">
+    70% penuh
+    </meter>
+    <label for="rating">Rating produk:</label>
+    <meter id="rating" value="4.2" min="0" max="5">4.2/5</meter>
+</body>
+</html>

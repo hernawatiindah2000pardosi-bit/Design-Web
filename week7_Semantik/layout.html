@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HEADER: Logo + Nav utama -->
+        <header style="display: flex; align-items: center; padding: 10px 20px; font-family: sans-serif; border-top: 4px solid #0056b3;">
+    
+    <a href="/" style="text-decoration: none; margin-right: 40px;">
+        <span style="font-size: 24px; font-weight: 900; color: #0056b3; letter-spacing: -1px;">PORTAL</span>
+        <span style="font-size: 24px; font-weight: 300; color: #333;">BERITA</span>
+    </a>
+
+    <nav>
+        <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 20px;">
+            <li><a href="/" style="text-decoration: none; color: #555; font-weight: bold;">Beranda</a></li>
+            <li><a href="/nasional" style="text-decoration: none; color: #555; font-weight: bold;">Nasional</a></li>
+            <li><a href="/teknologi" style="text-decoration: none; color: #555; font-weight: bold;">Teknologi</a></li>
+        </ul>
+    </nav>
+</header>
+
+<hr style="border: 0.5px solid #ccc; margin-top: 20px;">
+            <form role="search" action="/cari" method="get">
+            <label for="q">Cari berita</label>
+            <input id="q" type="search" name="q" placeholder="Ketik kata kunci...">
+        <button type="submit">Cari</button>
+        </form>
+        </header>
+    <!-- HERO: Berita utama -->
+        <section aria-label="Berita Pilihan">
+    <article>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800" 
+     alt="Foto ilustrasi berita utama"
+     style="width: 50%; max-width: 200px; height: auto; border-radius: 5px;"><br>
+     Foto: Dokumentasi
+        </figure>
+        <header>
+        <span>Teknologi</span>
+        <h1>Indonesia Luncurkan Satelit Komunikasi Generasi Terbaru</h1>
+        <p>Peluncuran berhasil dilakukan dari Kennedy Space Center...</p>
+        </header>
+    </article>
+        </section>
+<!-- MAIN: Konten utama + Sidebar -->
+<main>
+    <!-- Artikel utama -->
+    <section aria-label="Berita Terbaru">
+    <h2>Berita Terbaru</h2>
+        <article>
+    <header>
+        <h3><a href="/berita/1">Ekonomi Digital RI Tumbuh 40%</a></h3>
+        <address>Oleh <a href="/penulis/sari">Sari Dewi</a></address>
+        <time datetime="2024-11-20">20 November 2024</time>
+    </header>
+        <p>Pertumbuhan ekonomi digital Indonesia...</p>
+    </article>
+
+    <article>
+    <header>
+        <h3><a href="/berita/2">Startup Lokal Raih Pendanaan Seri B</a></h3>
+        <address>Oleh <a href="/penulis/andi">Andi Pratama</a></address>
+        <time datetime="2024-11-19">19 November 2024</time>
+    </header>
+    <p>Startup fintech asal Bandung berhasil...</p>
+    </article>
+    </section>
+    <!-- Sidebar -->
+        <aside aria-label="Konten Tambahan">
+        <section>
+        <h2>Trending Hari Ini</h2>
+        <ol>
+                <li><a href="/berita/trending-1">Harga BBM Terbaru</a></li>
+                <li><a href="/berita/trending-2">Hasil Pilkada 2024</a></li>
+                <li><a href="/berita/trending-3">Piala Dunia U-20</a></li>
+        </ol>
+        </section>
+
+        <section>
+        <h2>Berlangganan Newsletter</h2>
+        <form>
+            <label for="email">Alamat Email</label>
+            <input id="email" type="email" required>
+            <button type="submit">Daftar</button>
+        </form>
+        </section>
+        </aside>
+</main>
+    <!-- FOOTER -->
+    <footer>
+        <section>
+        <h3>Portal Berita Indonesia</h3>
+        <p>Menyajikan berita akurat dan terpercaya sejak 2010.</p>
+        </section>
+    <nav aria-label="Footer">
+        <a href="/tentang">Tentang Kami</a>
+        <a href="/kontak">Kontak</a>
+        <a href="/karir">Karir</a>
+    </nav>
+    <p><small>Copyright &copy; 2024 Portal Berita. All rights reserved.</small></p>
+    </footer>
+
+</body>
+</html>
