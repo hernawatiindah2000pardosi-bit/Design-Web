@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Tampilan Kumparan</title>
+    <style>
+        /* Reset Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Times new roman,'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #292929;
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 10%;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 30px;
+	    font-face: times new roman;
+            color: blue; /* Warna biru khas */
+            text-decoration: none;
+        }
+
+        .search-bar {
+	    margin:0 40px;
+            background: #f2f2f2;
+            padding: 8px 10px;
+            border-radius: 20px;
+            width: 30%;
+            border: 1px solid grey;
+        }
+
+        /* Container Utama */
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Headline & Judul */
+        .category {
+            color: #0077ff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+	    border:0.1px grey;
+        }
+
+        h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        /* Meta Penulis */
+        .meta-author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .author-info {
+            margin-left: 10px;
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .date {
+            color: #757575;
+            font-size: 12px;
+        }
+
+        /* Konten Artikel */
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .caption {
+            font-size: 13px;
+            color: #757575;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Tombol Interaksi */
+        .interaction {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            background: #f2f2f2;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+        }
+	
+	.btn-buat-tulisan{
+	margin-left:400px;
+	padding:5px 15px;
+	background-color:green;
+	color:white;
+	font-size:12px;
+	border-radius:5px;
+	}
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">KOMPAS</a>
+        <input type="text" class="search-bar" placeholder="Cari berita...">
+        <div style="font-weight: 600;" class="btn-buat-tulisan">Buat Tulisan</div>
+    </header>
+
+    <div class="container">
+        <span class="category">Regional</span>
+        <h1>Rela Berbuka di Parkiran demi Kue Lebaran: Potret Kegigihan Warga Medan</h1>
+
+        <div class="meta-author">
+            <div style="width: 40px; height: 40px; background: #ddd; border-radius: 50%;"></div>
+            <div class="author-info">
+                <div class="author-name">Elsa & Herna</div>
+                <div class="date">14 Maret 2026 • 3 menit baca</div>
+            </div>
+        </div>
+
+        <img src="C:\Users\herna\OneDrive\Dokumen\14.jpeg" alt="Antrean Warga" class="main-image">
+        <p class="caption">Potret antrean warga di depan toko grosir kawasan Medan, Medan.</p>
+
+        <div class="content">
+            <p><strong>Medan</strong> - Semburat merah senja baru saja menghilang dari langit Medan, namun antusiasme warga sudah memuncak bahkan sejak sore hari di depan toko Shafa Aneka Snack...</p>
+            <p>Demi menjaga posisi dalam barisan, banyak warga—terutama yang datang dari luar wilayah—memilih untuk tetap berada di lokasi meskipun waktu berbuka puasa telah tiba. Pemandangan warga yang berbuka puasa dengan bekal seadanya di area parkir menjadi bukti nyata dari rasa was-was akan kehabisan stok.</p>
+	    <p>
+		(MEDAN) –  Semburat merah senja baru saja menghilang dari langit Medan, Medan, namun antusiasme warga sudah memuncak bahkan sejak sore hari di depan toko Shafa Aneka Snack. Halaman depan toko telah dipadati oleh kerumunan yang didominasi ibu-ibu, yang rela berdiri setia menunggu di depan pintu besi cokelat yang masih tertutup rapat. Mereka bukan sedang mengantre tiket pertunjukan, melainkan sedang melakukan "ritual" tahunan: berburu kue Lebaran harga grosir. Potret ini memperlihatkan sisi lain dari persiapan Lebaran: ada perjuangan, ada kesabaran, dan ada kegembiraan kolektif saat pintu gerbang cokelat itu akhirnya terbuka.
+	   </p>
+	    <p>
+
+Foto di atas menjadi saksi bisu betapa tingginya antusiasme warga Medan untuk menyambut hari kemenangan tanpa harus menguras dompet. Meski toko belum beroperasi, barisan sudah mengular hingga ke pinggir jalan. Ada semacam kesepakatan tak tertulis di antara mereka: siapa yang datang lebih awal, dialah yang akan mendapatkan stok kue kering terbaik.
+	   </p>
+	    <p>
+Bagi warga sekitar Jl. Bersama, toko grosir ini adalah "penyelamat" anggaran hari raya. Di tengah kenaikan harga bahan pokok, menemukan tempat yang menjual aneka snack, kacang-kangan, dan kue kering dengan harga ramah kantong adalah sebuah keberuntungan yang layak diperjuangkan, meski harus berdiri berjam-jam di tengah udara malam.
+	   </p>
+	    <p>
+Suasana di depan Shafa Aneka Snack ini penuh dengan ketegangan yang unik. Sambil menunggu pintu besi digeser, terdengar selentingan obrolan antarwarga tentang jenis kue yang akan mereka incar. Begitu kunci pintu dibuka, suasana yang semula tertib bisa berubah menjadi "war" kecil. Setiap orang bergerak cepat menuju rak-rak yang sudah mereka incar sejak dari luar pagar.
+	   </p>
+	    <p>
+Fenomena ini bukan sekadar tentang belanja, tapi tentang strategi bertahan hidup yang cerdas. Warga lebih memilih mengalokasikan waktu dan tenaga ekstra untuk mengantre daripada harus membayar dua kali lipat di mall atau pusat perbelanjaan besar.
+	   </p>
+	    <p>
+Ketika fajar nanti menyingsing, warga-warga ini akan pulang dengan tangan penuh kantong plastik besar. Lelah karena mengantre sejak gelap akan terbayar lunas saat melihat toples-toples di rumah terisi penuh dengan harga yang jujur. Shafa Aneka Snack pagi itu bukan sekadar toko grosir, melainkan saksi betapa gigihnya warga Medan dalam mempersiapkan hari yang fitri.
+	   </p>
+        </div>
+
+        <div class="interaction">
+            <button class="btn">Like (120)</button>
+            <button class="btn">Komentar (45)</button>
+            <button class="btn">Share</button>
+        </div>
+    </div>
+
+</body>
+</html>

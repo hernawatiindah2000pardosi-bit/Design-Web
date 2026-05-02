@@ -1,0 +1,22 @@
+p{
+    color:rgb(151, 36, 55);
+    font-family: 'Courier New', Courier, monospace ;
+    font-size: 24px;
+    font-weight: bolder;
+    font-style: italic;
+    font-variant: small-caps;
+    text-align: justify;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+.satu{
+    color: rgb(237, 8, 8);
+    text-shadow: 3px 2px rgb(68, 17, 51);
+}
+body{
+    background-color: bisque;
+    background-image: url(bgpolmed.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+   background-position:;
+}
