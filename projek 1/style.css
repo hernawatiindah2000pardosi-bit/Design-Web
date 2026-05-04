@@ -17,17 +17,13 @@ body {
     gap: 15px;
 }
 
-.logo-placeholder {
-    width: 60px;
-    height: 60px;
-    background-color: #a88734; 
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
+.site-logo {
+    height: 60px; 
+    width: auto; 
+    object-fit: contain; /* Memastikan seluruh gambar logo terlihat utuh */
+    
+    /* Opsional: Jika logomu berbentuk kotak dan kamu ingin membuatnya membulat, aktifkan kode di bawah ini: */
+    /* border-radius: 50%; */ 
 }
 
 .site-title h1 {
