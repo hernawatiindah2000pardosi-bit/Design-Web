@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perulangan Bersarang Bintang</title>
+</head>
+<body>
+    <script>
+        var ulangi = confirm("apakah anda ingin mengulang?");
+        var hitung = 0;
+
+        // Loop utama berjalan menggunakan while selama user mengklik OK
+        while (ulangi) {
+            hitung++;
+            
+            // Perulangan untuk bintang menggunakan fungsi .repeat() di dalam while
+            // Panjang teks bintang akan menyesuaikan angka pada variabel 'hitung'
+            var bintang = "*".repeat(hitung) + "<br>"; 
+            
+            // Cetak angka hitung dan teks bintangnya
+            document.write(hitung + ": " + bintang);
+            
+            // Minta input ulang dari user
+            ulangi = confirm("apakah anda ingin mengulang?");
+        }
+    </script>
+</body>
+</html>

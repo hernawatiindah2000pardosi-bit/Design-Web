@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perulangan While</title>
+</head>
+<body>
+    <script>
+        // Munculkan popup confirm (OK bernilai true, Cancel bernilai false)
+        var ulangi = confirm("Apakah anda mau mengulang?");
+        var counter = 0; // Siapkan nilai awal penghitung
+
+        // Selama variabel 'ulangi' bernilai true, blok di bawah akan terus dieksekusi
+        while(ulangi) {
+            counter++; // Tambah jumlah hitungan
+            // Minta input konfirmasi lagi untuk mengupdate variabel 'ulangi'
+            ulangi = confirm("Apakah anda mau mengulang?");
+        }
+
+        // Ini dicetak setelah user menekan tombol Cancel (mengakhiri loop)
+        document.write("Perulangan sudah dilakuakn sebanyak " + counter + " kali");
+    </script>
+</body>
+</html>

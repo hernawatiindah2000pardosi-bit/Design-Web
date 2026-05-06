@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percabangan if-else</title>
+</head>
+<body>
+    <script>
+        // Meminta user memasukkan password
+        var password = prompt("Password: ");
+
+        // Mengecek apakah password sama persis dengan "polmed"
+        if(password == "polmed") {
+            // Jika benar, jalankan blok ini
+            document.write("<h2> Selamat datang!</h2>");
+        } else {
+            // Jika salah (selain "polmed"), jalankan blok ini
+            document.write("<p>Password salah, coba lagi!</p>");
+        }
+
+        // Teks ini akan selalu muncul di akhir program
+        document.write("<p>Terimakasih sudah menggunakan aplikasi ini!</p>");
+    </script>
+</body>
+</html>
