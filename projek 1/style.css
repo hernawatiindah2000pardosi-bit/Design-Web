@@ -1,5 +1,8 @@
 body {
-    background-color: #f6f6f6b7;
+    background-image: linear-gradient( rgba(244, 239, 239, 0.85), rgba(244, 239, 239, 0.85)), url('bg.png');
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed;
 }
 
 /* --- HEADER ATAS --- */
