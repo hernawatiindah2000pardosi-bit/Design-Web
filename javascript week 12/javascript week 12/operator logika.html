@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Operator Logika</title>
+</head>
+<body>
+    <script>
+        var a = 25;
+        var b = 15;
+
+        var benar = a > b; 
+        var salah = a < b; 
+
+        // operator && (AND) -> Akan bernilai true HANYA JIKA kedua sisi true
+        var hasil = benar && salah;
+        document.write(benar + " && " + salah + " = " + hasil + "<br/>");
+
+        // operator || (OR) -> Akan bernilai true JIKA SALAH SATU saja ada yang true
+        var hasil = benar || salah;
+        document.write(benar + " || " + salah + " = " + hasil + "<br/>");
+
+        // operator ! (NOT / Negasi) -> Membalikkan nilai boolean
+        var hasil = !benar;
+        document.write("!" + benar + " = " + hasil + "<br/>");
+    </script>
+</body>
+</html>

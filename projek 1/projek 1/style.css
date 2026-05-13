@@ -1,0 +1,183 @@
+body {
+    background-image: linear-gradient( rgba(244, 239, 239, 0.85), rgba(244, 239, 239, 0.85)), url('bg.png');
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed;
+}
+
+/* --- HEADER ATAS --- */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: rgb(255, 255, 255);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.site-logo {
+    height: 60px; 
+    width: auto; 
+    object-fit: contain; /* Memastikan seluruh gambar logo terlihat utuh */
+    
+    /* Opsional: Jika logomu berbentuk kotak dan kamu ingin membuatnya membulat, aktifkan kode di bawah ini: */
+    /* border-radius: 50%; */ 
+}
+
+.site-title h1 {
+    font-size: 18px;
+    color: #a88734; /* Warna teks emas/coklat */
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.site-title p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* --- MENU NAVIGASI BIRU --- */
+.navbar {
+    background-color: #2b78c5; /* Warna biru mirip di gambar */
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    flex: 1; /* Membuat setiap menu memiliki lebar yang sama/rata */
+    text-align: center;
+    border-right: 1px solid #5296d6; /* Garis pembatas antar menu */
+}
+
+.navbar ul li:last-child {
+    border-right: none;
+}
+
+.navbar ul li a {
+    display: block;
+    padding: 15px 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background 0.3s;
+}
+
+.navbar ul li a:hover {
+    background-color: #1e5a96; /* Warna biru gelap saat disentuh */
+}
+
+/* --- AREA KONTEN --- */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto; /* Menengahkan konten */
+    padding: 30px 20px;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: rgb(247, 244, 244);
+    padding: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* TEKS BERJALAN */
+.marquee-container {
+    background-color: #f1c40f;
+    color: #333;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.marquee-text {
+    display: inline-block;
+    animation: jalan 25s linear infinite;
+}
+@keyframes jalan {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+}
+
+/* FOOTER */
+.page-footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* --- TAMBAHAN CSS UNTUK PRODUK, FORM, DAN TIM --- */
+.product-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+.product-card, .team-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    text-align: center;
+    border: 1px solid #eee;
+}
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.product-info, .team-info { padding: 20px; }
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto 10px;
+    border: 4px solid #f4f6f9;
+}
+.btn-ig-small {
+    display: inline-block;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 10px;
+}
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;
+}

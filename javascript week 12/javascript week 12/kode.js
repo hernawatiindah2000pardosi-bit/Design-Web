@@ -1,0 +1,1 @@
+alert("Halo Semuanya, Hari ini saya belajar JavaScript");

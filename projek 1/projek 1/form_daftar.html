@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="icon" href="logo mutiara.ico">
+    <meta charset="UTF-8">
+    <title>Layanan - Mutiara Mandiri ex Hotel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header-top">
+        <div class="header-left">
+            <img src="logo mutiara.png" alt="Logo Mutiara Mandiri" class="site-logo">  
+            <div class="site-title">
+                <h1>MUTIARA MANDIRI EX HOTEL</h1>
+                <p>PREMIUM PRE-LOVED FURNITURE</p>
+            </div>
+        </div>
+    
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="profil.html">Tentang Kami</a></li>
+            <li><a href="produk.html">Katalog Produk</a></li>
+            <li><a href="form_daftar.html">Informasi & Layanan</a></li>
+            <li><a href="profil_pembuat.html">Tim Pengembang</a></li>
+        </ul>
+    </nav>
+
+     <div class="marquee-container">
+        <div class="marquee-text">
+             Bawa vibe hotel bintang 5 ke rumahmu! |  100% Eco-Friendly |  Deep Cleaned & Disinfected |  Harga Thrift, Kualitas Elit 
+        </div>
+    </div>
+
+
+    <main class="content-wrapper">
+        <div class="hero-section">
+            <h2>Pemesanan & Pertanyaan</h2>
+            Tertarik dengan barang eks-hotel kami ?<br>
+            Silakan isi form di bawah ini, tim kami akan segera menghubungi Anda via WhatsApp.<br>
+            Kami menerima sistem delivery atau COD barang dan menerima jual dan beli barang ex hotel<br>
+            (Yang mau jual barang bekasnya langsung dm lewat Instagram : <a href="https://www.instagram.com/mutiara_mandiri_ex_hotel.id?igsh=d2xvajlwaGRmb3Vm" style="color: #f1c40f;">@mutiara_mandiri_ex_hotel.id</a>)
+        </div>
+
+        <div class="form-container">
+            <form id="formPesan" onsubmit="kirimKeWhatsApp(event)">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap Pemesan:</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="wa">Nomor WhatsApp:</label>
+                    <input type="tel" id="wa" placeholder="Contoh: 08123456789" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="minat">Barang yang Diminati:</label>
+                    <select id="minat">
+                        <option>Set Sofa + bantal</option>
+                        <option>Wastafel atas + keran</option>
+                        <option>Kursi Kafe</option>
+                        <option>Mesin Penggiling Daging </option>
+                        <option>Meja Bundar (kayu jati) </option>
+                        <option>Closet (toto seri 420j) </option>
+                        <option>Closet (toto cw660) </option>
+                        <option>Kursi (kayu jati) + bantal </option>
+                        <option>Set Meja & Kursi </option>
+                        <option>Set Sofa </option>
+                        <option>Meja Stainless </option>
+                        <option>Kursi jati </option>
+                        <option>Kursi villa </option>
+                        <option>Wastafel atas meja </option>
+                        <option>Rice Cooker (miyako) </option>
+                        <option>Mangkuk hot pot </option>
+                        <option>Mangkuk sup </option>
+                        <option>Piring Resto </option>
+                        <option>Piring Daun </option>
+                        <option>Piring Daging </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Jumlah Pesanan:</label>
+                    <input type="text" id="nama" placeholder="Masukkan jumlah (set/pcs)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pesan">Pesan / Alamat Pengiriman:</label>
+                    <textarea id="pesan" rows="4" placeholder="Tuliskan pertanyaan atau alamat lengkap Anda di sini..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; font-size: 16px;">Kirim Pesan</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; 2026 Mutiara Mandiri ex Hotel. Hak Cipta Dilindungi.</p>
+        <p style="font-size: 12px; margin-top: 10px; color: #bdc3c7;">
+            Instagram: <a href="https://www.instagram.com/mutiara_mandiri_ex_hotel.id?igsh=d2xvajlwaGRmb3Vm" style="color: #f1c40f;">@mutiara_mandiri_ex_hotel.id</a>
+        </p>
+    </footer>
+    
+    <script>
+        function kirimKeWhatsApp(event) {
+            event.preventDefault(); // Ini adalah mantra ajaib untuk mencegah Error 405 muncul!
+
+            const nomorAdmin = "6289604471102"; // Ganti dengan nomor aslimu
+            const nama = document.getElementById("nama").value;
+            const nomorPelanggan = document.getElementById("wa").value;
+            const barang = document.getElementById("minat").value;
+            const pesan = document.getElementById("pesan").value;
+
+            const teksWhatsApp = `Halo Admin Mutiara Mandiri,%0A%0ASaya pelanggan dari website, berikut data diri saya :%0A Nama: ${nama}%0A No. WA: ${nomorPelanggan}%0A Minat: ${barang}%0A Pesan/Alamat: ${pesan}%0A%0AMohon direspons, terima kasih.`;
+            const linkWhatsApp = `https://wa.me/${nomorAdmin}?text=${teksWhatsApp}`;
+            window.open(linkWhatsApp, '_blank');
+        }
+    </script>
+</body>
+</html>
