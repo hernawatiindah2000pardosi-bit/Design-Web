@@ -1,6 +1,6 @@
 /* --- Variables & Reset --- */
 :root {
-    --primary-color: #4dd007; /* Duolingo-style green */
+    --primary-color: #4dd007; 
     --primary-hover: #62f146;
     --secondary-color: #1cb0f6;
     --bg-color: #f7f7f7;
