@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngHerna - Learn English with Herna</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">EngHerna</div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showSection('home')">Home</a></li>
+            <li><a href="#" onclick="showSection('materials')">Materials</a></li>
+            <li><a href="#" onclick="showSection('exercises')">Exercises</a></li>
+            <li><a href="#" onclick="showSection('games')">Games</a></li>
+        </ul>
+        <div class="mobile-menu-toggle">☰</div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="app-container">
+        
+        <!-- HOME SECTION -->
+        <section id="home" class="view-section active fade-in">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Master English <br><span class="highlight">With Confidence</span></h1>
+                    <p>Elevate your language skills with interactive materials, challenging quizzes, and fun games designed for modern learners.</p>
+                    <button class="btn primary-btn" onclick="showSection('materials')">Start Learning Now</button>
+                </div>
+                <div class="hero-image">
+                    <!-- Simple CSS shape illustration -->
+                    <div class="abstract-shape">
+                        <div class="circle">A</div>
+                        <div class="square">The</div>
+                        <div class="triangle">Verb</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATERIALS SECTION -->
+        <section id="materials" class="view-section hidden fade-in">
+            <div class="section-header">
+                <h2>English Learning Materials</h2>
+                <p>Start with the basics. Choose a topic below to explore.</p>
+            </div>
+            
+            <div class="grid-container">
+                <!-- Material Card 1 -->
+                <div class="card material-card">
+                    <div class="card-icon">📝</div>
+                    <h3>Parts of Speech</h3>
+                    <p>Understand Nouns, Verbs, Adjectives, and Adverbs.</p>
+                    <button class="btn secondary-btn" onclick="openModal('modal-pos')">Study Module</button>
+                </div>
+                <!-- Material Card 2 -->
+<div class="card material-card">
+    <div class="card-icon">⏱️</div>
+    <h3>Essential Tenses</h3>
+    <p>Master Present, Past, and Future Tenses.</p>
+    <!-- Tambahkan onclick disini -->
+    <button class="btn secondary-btn" onclick="openModal('modal-tenses')">Study Module</button>
+</div>
+
+<!-- Material Card 3 -->
+<div class="card material-card">
+    <div class="card-icon">🗣️</div>
+    <h3>Daily Expressions</h3>
+    <p>Greetings, introducing yourself, and daily conversations.</p>
+    <!-- Tambahkan onclick disini -->
+    <button class="btn secondary-btn" onclick="openModal('modal-expressions')">Study Module</button>
+</div>
+            </div>
+        </section>
+
+        <!-- EXERCISES SECTION -->
+        <section id="exercises" class="view-section hidden fade-in">
+            <div class="section-header">
+                <h2>Practice Exercises</h2>
+                <p>Test your knowledge and track your progress.</p>
+            </div>
+
+            <div class="quiz-container card">
+                <div id="quiz-ui">
+                    <h3 id="quiz-question">Loading question...</h3>
+                    <div id="quiz-options" class="options-grid">
+                        <!-- Options injected by JS -->
+                    </div>
+                    <div class="quiz-footer">
+                        <span id="quiz-progress">Question 1/5</span>
+                    </div>
+                </div>
+                <div id="quiz-result" class="hidden text-center">
+                    <h3>Quiz Completed!</h3>
+                    <h1 id="score-display" class="highlight">0%</h1>
+                    <p id="score-message">Great job!</p>
+                    <button class="btn primary-btn" onclick="startQuiz()">Retake Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAMES SECTION -->
+        <section id="games" class="view-section hidden fade-in">
+            <div class="section-header">
+                <h2>Educational Games</h2>
+                <p>Learn while having fun!</p>
+            </div>
+
+            <div class="game-container card text-center">
+                <h3>Game 1: Word Scramble</h3>
+                <p>Unscramble the letters to form a valid English word.</p>
+                
+                <div class="scramble-board">
+                    <h1 id="scrambled-word" class="highlight">...</h1>
+                    <p class="hint">Hint: <span id="word-hint">...</span></p>
+                    
+                    <input type="text" id="user-guess" placeholder="Enter the word..." autocomplete="off">
+                    
+                    <div class="game-controls">
+                        <button class="btn primary-btn" onclick="checkScramble()">Check Word</button>
+                        <button class="btn secondary-btn" onclick="initScramble()">Next Word</button>
+                    </div>
+                    
+                    <p id="game-feedback"></p>
+                    <div class="game-stats">
+                        <span>Score: <b id="game-score">0</b></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Material Modal (Example for Parts of Speech) -->
+    <div id="modal-pos" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-pos')">&times;</span>
+            <h2>Parts of Speech</h2>
+            <div class="lesson-content">
+                <h4>1. Noun</h4>
+                <p>A word that represents a person, place, thing, or idea.</p>
+                <div class="example-box"><strong>Example:</strong> Software, Engineer, Computer, City.</div>
+                
+                <h4>2. Verb</h4>
+                <p>An action or state of being.</p>
+                <div class="example-box"><strong>Example:</strong> Develop, Code, Create, Is, Are.</div>
+                
+                <h4>3. Adjective</h4>
+                <p>A word that describes a noun.</p>
+                <div class="example-box"><strong>Example:</strong> Modern, Clean, Interactive, Fast.</div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: Essential Tenses -->
+    <div id="modal-tenses" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-tenses')">&times;</span>
+            <h2>Essential Tenses</h2>
+            <div class="lesson-content">
+                <h4>1. Simple Present Tense</h4>
+                <p>Digunakan untuk kebiasaan, fakta, atau kejadian yang terjadi saat ini.</p>
+                <div class="example-box"><strong>Example:</strong> I code every day. The sun rises in the east.</div>
+                
+                <h4>2. Simple Past Tense</h4>
+                <p>Digunakan untuk kejadian yang sudah selesai di masa lalu.</p>
+                <div class="example-box"><strong>Example:</strong> I finished my project yesterday. She went to the campus.</div>
+                
+                <h4>3. Simple Future Tense</h4>
+                <p>Digunakan untuk kejadian yang akan terjadi di masa depan.</p>
+                <div class="example-box"><strong>Example:</strong> I will learn React JS tomorrow. We are going to build an app.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Daily Expressions -->
+    <div id="modal-expressions" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-expressions')">&times;</span>
+            <h2>Daily Expressions</h2>
+            <div class="lesson-content">
+                <h4>1. Greetings (Salam)</h4>
+                <p>Cara menyapa orang lain dalam situasi formal maupun kasual.</p>
+                <div class="example-box"><strong>Example:</strong> Good morning! / Hello, how are you doing? / What's up?</div>
+                
+                <h4>2. Introducing Yourself (Memperkenalkan Diri)</h4>
+                <p>Kalimat dasar untuk memperkenalkan diri kepada orang baru.</p>
+                <div class="example-box"><strong>Example:</strong> Hi, my name is [Name]. I am a software engineering student.</div>
+                
+                <h4>3. Asking for Help (Meminta Bantuan)</h4>
+                <p>Cara sopan untuk meminta tolong dalam bahasa Inggris.</p>
+                <div class="example-box"><strong>Example:</strong> Could you please help me with this code? / Do you mind explaining this to me?</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
