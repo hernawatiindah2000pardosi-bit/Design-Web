@@ -1,183 +1,203 @@
+/* Pengaturan latar belakang halaman utama */
 body {
-    background-image: linear-gradient( rgba(244, 239, 239, 0.85), rgba(244, 239, 239, 0.85)), url('bg.png');
-    background-size: cover; 
-    background-position: center; 
-    background-attachment: fixed;
+    background-image: linear-gradient( rgba(244, 239, 239, 0.85), rgba(244, 239, 239, 0.85)), url('bg.png'); /* Gambar background dengan efek redup */
+    background-size: cover; /* Biar gambar menutupi layar full */
+    background-position: center; /* Gambar posisinya di tengah */
+    background-attachment: fixed; /* Background diam/tidak ikut turun saat di-scroll */
 }
 
 /* --- HEADER ATAS --- */
 .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background-color: rgb(255, 255, 255);
+    display: flex; /* Bikin elemen di dalamnya sejajar ke samping */
+    justify-content: space-between; /* Pisahkan logo ke kiri dan menu ke kanan */
+    align-items: center; /* Ratakan posisinya di tengah-tengah secara vertikal */
+    padding: 15px 40px; /* Jarak bagian dalam atas-bawah dan kiri-kanan */
+    background-color: rgb(255, 255, 255); /* Warna background putih */
 }
 
 .header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    display: flex; 
+    align-items: center; 
+    gap: 15px; /* Jarak antara logo dan teks judul */
 }
 
 .site-logo {
-    height: 60px; 
-    width: auto; 
-    object-fit: contain; /* Memastikan seluruh gambar logo terlihat utuh */
-    
-    /* Opsional: Jika logomu berbentuk kotak dan kamu ingin membuatnya membulat, aktifkan kode di bawah ini: */
-    /* border-radius: 50%; */ 
+    height: 60px; /* Tinggi logo */
+    width: auto; /* Lebar otomatis biar proporsional */
+    object-fit: contain; /* Biar gambar logo gak kepotong atau gepeng */
 }
 
 .site-title h1 {
-    font-size: 18px;
-    color: #a88734; /* Warna teks emas/coklat */
-    margin: 0;
-    letter-spacing: 1px;
+    font-size: 18px; /* Ukuran huruf judul */
+    color: #a88734; /* Warna teks keemasan */
+    margin: 0; /* Hilangkan jarak luar bawaan */
+    letter-spacing: 1px; /* Jarak renggang antar huruf */
 }
 
 .site-title p {
-    font-size: 14px;
-    color: #555;
-    margin: 0;
+    font-size: 14px; /* Ukuran teks deskripsi di bawah judul */
+    color: #555; /* Warna abu-abu */
+    margin: 0; 
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-weight: bold;
+    gap: 15px; /* Jarak antar elemen di sebelah kanan */
+    font-weight: bold; /* Teks tebal */
     color: #333;
 }
 
 /* --- MENU NAVIGASI BIRU --- */
 .navbar {
-    background-color: #2b78c5; /* Warna biru mirip di gambar */
+    background-color: #2b78c5; /* Warna background biru */
 }
 
 .navbar ul {
-    display: flex;
-    list-style: none;
+    display: flex; /* Menu berjejer ke samping */
+    list-style: none; /* Hilangkan tanda titik (bullet) pada list */
     margin: 0;
     padding: 0;
 }
 
 .navbar ul li {
-    flex: 1; /* Membuat setiap menu memiliki lebar yang sama/rata */
-    text-align: center;
-    border-right: 1px solid #5296d6; /* Garis pembatas antar menu */
+    flex: 1; /* Bagi rata lebar setiap tombol menu */
+    text-align: center; /* Teks di tengah tombol */
+    border-right: 1px solid #5296d6; /* Garis pembatas antar tombol */
 }
 
 .navbar ul li:last-child {
-    border-right: none;
+    border-right: none; /* Hilangkan garis pembatas di tombol paling ujung kanan */
 }
 
 .navbar ul li a {
-    display: block;
-    padding: 15px 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+    display: block; /* Area yang bisa diklik selebar tombolnya */
+    padding: 15px 10px; /* Ruang dalam tombol */
+    color: white; /* Teks warna putih */
+    text-decoration: none; /* Hilangkan garis bawah link */
+    font-weight: bold; /* Teks tebal */
     font-size: 15px;
-    transition: background 0.3s;
+    transition: background 0.3s; /* Efek transisi warna setengah detik */
 }
 
 .navbar ul li a:hover {
-    background-color: #1e5a96; /* Warna biru gelap saat disentuh */
+    background-color: #1e5a96; /* Warna berubah jadi biru gelap saat disentuh mouse */
 }
 
 /* --- AREA KONTEN --- */
-.content-wrapper {
-    max-width: 1200px;
-    margin: 0 auto; /* Menengahkan konten */
+.content {
+    max-width: 1200px; /* Batas lebar maksimal konten */
+    margin: 0 auto; /* Posisikan konten di tengah-tengah layar */
     padding: 30px 20px;
 }
 
 .hero-section {
-    text-align: center;
-    margin-bottom: 30px;
-    background-color: rgb(247, 244, 244);
-    padding: 40px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center; /* Semua teks rata tengah */
+    margin-bottom: 30px; /* Jarak ke bawah */
+    background-color: rgb(247, 244, 244); /* Warna abu-abu terang */
+    padding: 40px; /* Ruang dalam */
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Gaya huruf klasik (serif) */
 }
 
 /* TEKS BERJALAN */
 .marquee-container {
-    background-color: #f1c40f;
-    color: #333;
+    background-color: #f1c40f; /* Background kuning */
+    color: #333; /* Teks warna gelap */
     padding: 10px 0;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow: hidden; /* Sembunyikan teks yang melewati layar */
+    white-space: nowrap; /* Teks memanjang terus, tidak turun ke bawah */
     font-weight: bold;
     margin-bottom: 20px;
 }
 .marquee-text {
     display: inline-block;
-    animation: jalan 25s linear infinite;
+    animation: jalan 25s linear infinite; /* Gerakkan teks selama 25 detik tanpa henti */
 }
 @keyframes jalan {
-    0% { transform: translateX(100vw); }
-    100% { transform: translateX(-100%); }
+    0% { transform: translateX(100vw); } /* Mulai dari kanan layar */
+    100% { transform: translateX(-100%); } /* Berakhir di kiri layar */
 }
 
 /* FOOTER */
 .page-footer {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
+    background-color: #2c3e50; /* Background biru gelap */
+    color: white; /* Teks putih */
+    text-align: center; /* Rata tengah */
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 40px; /* Jarak dari atasnya */
 }
 
 /* --- TAMBAHAN CSS UNTUK PRODUK, FORM, DAN TIM --- */
 .product-grid, .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    display: grid; /* Bikin tata letak berbentuk kotak-kotak */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Susun kotak otomatis sesuai lebar layar */
+    gap: 30px; /* Jarak antar kotak */
     margin-top: 20px;
 }
+
 .product-card, .team-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: white; /* Kotak warna putih */
+    border-radius: 10px; /* Ujung kotak agak bulat */
+    overflow: hidden; /* Biar gambar di dalamnya ikut melengkung sesuai kotak */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Tambahkan efek bayangan tipis */
     text-align: center;
-    border: 1px solid #eee;
+    border: 1px solid #eee; /* Garis tepi tipis abu-abu */
 }
+
 .product-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: 100%; /* Gambar penuh selebar kotak */
+    height: 200px; /* Tinggi gambar dibatasi 200px */
+    object-fit: cover; /* Biar gambar gak gepeng saat dipotong */
 }
-.product-info, .team-info { padding: 20px; }
+
+.product-info, .team-info { 
+    padding: 20px; /* Ruang lega di dalam kotak info */
+}
+
 .team-photo {
-    width: 120px;
+    width: 120px; 
     height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 20px auto 10px;
-    border: 4px solid #f4f6f9;
+    border-radius: 50%; /* Bikin foto jadi bundar sempurna */
+    object-fit: cover; /* Biar foto tidak penyok */
+    margin: 20px auto 10px; /* Posisikan foto di tengah */
+    border: 4px solid #f4f6f9; /* Bingkai abu-abu di sekitar foto */
 }
+
 .btn-ig-small {
     display: inline-block;
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    text-decoration: none;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); /* Warna gradasi ala Instagram */
+    color: white; /* Teks tombol putih */
+    padding: 8px 15px; /* Ukuran tombol */
+    border-radius: 20px; /* Tombol bentuk kapsul */
+    text-decoration: none; /* Hilangkan garis bawah link */
     font-size: 13px;
     margin-top: 10px;
 }
+
 .form-container {
     background: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    max-width: 600px;
-    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Bayangan tipis */
+    max-width: 600px; /* Jangan terlalu lebar di layar besar */
+    margin: 0 auto; /* Posisikan kotak form di tengah */
 }
-.form-group { margin-bottom: 15px; text-align: left; }
-.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+
+.form-group { 
+    margin-bottom: 15px; /* Jarak ke kolom berikutnya */
+    text-align: left; /* Teks formulir rata kiri */
+}
+
+.form-group label { 
+    display: block; /* Judul isian ada di atas kotaknya */
+    font-weight: bold; /* Teks tebal */
+    margin-bottom: 5px; /* Jarak ke kotak isian */
+    color: #333; 
+}
+
 .form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;
+    width: 100%; /* Kotak isian memanjang penuh */
+    padding: 10px; /* Ruang lega buat ngetik */
+    border: 1px solid #ccc; /* Garis tepi kotak isian */
+    border-radius: 5px; /* Ujung kotak isian agak bulat */
 }
