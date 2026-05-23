@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi Stack - C++</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light background */
+            color: #1e293b; /* Dark text */
+            overflow: hidden;
+        }
+        .code-font { font-family: 'Fira Code', monospace; }
+        
+        /* Layout Utama Slide */
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            height: 100vh;
+            width: 100vw;
+            overflow-y: auto;
+            padding: 3rem 2rem;
+            box-sizing: border-box;
+        }
+        
+        .slide.active {
+            display: flex;
+            align-items: center; /* Center vertikal */
+            justify-content: center; /* Center horizontal */
+            opacity: 1;
+        }
+
+        /* Pembungkus agar konten tidak terlalu melebar (Rapi) */
+        .slide-content {
+            width: 100%;
+            max-width: 1024px; /* Lebar maksimal konten */
+            margin: auto;
+        }
+
+        /* Styling untuk Visual Stack */
+        .stack-container {
+            display: flex;
+            flex-direction: column-reverse; /* Indeks 0 di bawah */
+            width: 130px;
+            border-left: 4px solid #4f46e5;
+            border-right: 4px solid #4f46e5;
+            border-bottom: 4px solid #4f46e5;
+            border-radius: 0 0 8px 8px;
+            background-color: #f1f5f9;
+            padding-top: 15px;
+            margin: 0 auto;
+        }
+        .stack-item {
+            height: 45px;
+            border: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .item-active { background-color: #3b82f6; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .item-inactive { background-color: #e2e8f0; color: #64748b; }
+        .item-empty { background-color: transparent; border: 2px dashed #cbd5e1; color: #94a3b8; }
+
+        /* Styling Blok Kode C++ */
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            border: 1px solid #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .highlight-text { color: #38bdf8; }
+        .keyword { color: #f472b6; }
+        .func { color: #34d399; }
+        .comment { color: #94a3b8; font-style: italic; }
+
+        /* Tombol Navigasi */
+        .nav-btn {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+        }
+        .nav-btn:hover:not(:disabled) { background-color: #4338ca; transform: translateY(-1px); }
+        .nav-btn:disabled { background-color: #cbd5e1; color: #64748b; cursor: not-allowed; box-shadow: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 h-1.5 bg-slate-200 w-full z-50">
+        <div id="progress-bar" class="h-full bg-indigo-600 transition-all duration-300 w-0"></div>
+    </div>
+
+    <!-- Dekorasi Latar Belakang Halus -->
+    <div class="fixed top-[-10%] right-[-5%] w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 z-[-1]"></div>
+    <div class="fixed bottom-[-10%] left-[-5%] w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 z-[-1]"></div>
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide active">
+        <div class="slide-content text-center">
+            <div class="inline-flex items-center justify-center w-20 h-20 mb-6 text-indigo-600 bg-indigo-50 rounded-2xl shadow-sm border border-indigo-100">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+            </div>
+            <h1 class="text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-600 leading-tight">
+                Implementasi Struktur Data Stack<br>Menggunakan Array (C++)
+            </h1>
+            <p class="text-xl text-slate-500 mb-12 font-medium">Mata Kuliah: Struktur Data & Algoritma</p>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-200 inline-block w-full max-w-lg text-slate-700 text-left mx-auto">
+                <div class="text-center text-sm uppercase tracking-widest text-indigo-600 font-bold mb-4">Tim Penyusun</div>
+                <div class="grid grid-cols-1 gap-3 text-center text-lg">
+                    <div class="border-b border-slate-100 pb-2 font-semibold text-slate-700">Hernawati Pardosi</div>
+                    <div class="border-b border-slate-100 pb-2 font-semibold text-slate-700">Marta Diamond</div>
+                    <div class="border-b border-slate-100 pb-2 font-semibold text-slate-700">Maharani Humaira</div>
+                    <div class="font-semibold text-slate-700">Muhammad Rizky</div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-slate-500 font-medium tracking-wide">
+                <p>Politeknik Negeri Medan</p>
+                <p>Tahun 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: PENDAHULUAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Pendahuluan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+                <div class="flex flex-col justify-center space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Apa itu Struktur Data?</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Cara kita menyimpan dan menyusun data di memori komputer agar bisa digunakan secara efisien. Ibarat menata buku di rak, jika rapi, mencarinya akan sangat cepat!
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Mengapa Stack Penting?</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Dalam komputer, ada banyak proses yang mengharuskan kita mengurus data dari yang "paling baru" ke yang "paling lama". Di situlah Stack digunakan.
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold mb-6 text-center text-indigo-600 bg-indigo-50 py-2 rounded-lg">Contoh Sehari-hari</h3>
+                    <ul class="space-y-4 text-slate-700 font-medium">
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="text-2xl">🥞</span> Tumpukan piring di prasmanan</li>
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="text-2xl">🔄</span> Tombol "Undo" di Word (Ctrl+Z)</li>
+                        <li class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="text-2xl">⬅️</span> Tombol "Back" di Web Browser</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: PENGERTIAN STACK -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Pengertian Stack</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+                <div class="md:col-span-2 space-y-6">
+                    <blockquote class="text-2xl italic font-semibold text-slate-800 border-l-8 border-blue-500 pl-6 bg-blue-50 py-4 rounded-r-xl leading-relaxed">
+                        "Stack adalah struktur data linear yang bekerja dengan prinsip <span class="text-blue-600 font-extrabold">LIFO</span> (Last In, First Out)."
+                    </blockquote>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Data yang <span class="font-bold text-indigo-700 bg-indigo-100 px-2 rounded">TERAKHIR</span> dimasukkan ke dalam tumpukan, otomatis menjadi data yang <span class="font-bold text-indigo-700 bg-indigo-100 px-2 rounded">PERTAMA</span> kali dikeluarkan.
+                    </p>
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-start gap-4">
+                        <span class="text-3xl">💡</span>
+                        <p class="text-slate-600 text-sm">Pikirkan sebuah tabung silinder (seperti wadah bola tenis). Anda hanya bisa memasukkan bola dari ujung atas, dan saat ingin mengambil, Anda juga hanya bisa mengambil bola teratas.</p>
+                    </div>
+                </div>
+                <div class="bg-white py-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center">
+                    <div class="stack-container relative" style="height: 180px;">
+                        <div class="stack-item item-inactive">Buku A</div>
+                        <div class="stack-item item-inactive">Buku B</div>
+                        <div class="stack-item item-active">Buku C</div>
+                        <div class="absolute -right-16 top-4 text-blue-600 font-bold text-sm whitespace-nowrap">
+                            ← TOP
+                        </div>
+                    </div>
+                    <p class="mt-6 text-sm font-semibold text-slate-500">Ilustrasi Visual Stack</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: KONSEP LIFO -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Konsep LIFO (Simulasi)</h2>
+            <div class="grid grid-cols-4 gap-6">
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-slate-700 bg-slate-100 py-2 rounded-lg mb-6">1. Push(10)</div>
+                    <div class="stack-container" style="height: 160px;">
+                        <div class="stack-item item-active">10</div>
+                        <div class="stack-item item-empty"></div>
+                        <div class="stack-item item-empty"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-slate-700 bg-slate-100 py-2 rounded-lg mb-6">2. Push(20)</div>
+                    <div class="stack-container" style="height: 160px;">
+                        <div class="stack-item item-inactive">10</div>
+                        <div class="stack-item item-active">20</div>
+                        <div class="stack-item item-empty"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-slate-700 bg-slate-100 py-2 rounded-lg mb-6">3. Push(30)</div>
+                    <div class="stack-container" style="height: 160px;">
+                        <div class="stack-item item-inactive">10</div>
+                        <div class="stack-item item-inactive">20</div>
+                        <div class="stack-item item-active">30</div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-2xl shadow-sm border border-red-200 text-center relative">
+                    <div class="text-sm font-bold text-red-600 bg-white py-2 rounded-lg mb-6 border border-red-100">4. Pop()</div>
+                    <div class="absolute top-[80px] left-1/2 transform -translate-x-1/2 text-red-600 font-bold animate-bounce whitespace-nowrap bg-white px-2 py-1 rounded shadow-sm z-10 border border-red-200">↑ 30 Keluar</div>
+                    <div class="stack-container" style="height: 160px;">
+                        <div class="stack-item item-inactive">10</div>
+                        <div class="stack-item item-active">20</div>
+                        <div class="stack-item item-empty"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: IMPLEMENTASI ARRAY -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Implementasi Menggunakan Array</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="space-y-6">
+                    <p class="text-lg text-slate-700">
+                        Di C++, Stack paling sederhana dibuat memakai <b>Array</b>. Bayangkan indeks array ini berdiri menyusun laci rak dari bawah ke atas.
+                    </p>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-5">
+                        <div class="flex gap-4 items-start">
+                            <div class="text-2xl bg-indigo-50 p-2 rounded-lg shrink-0">📦</div> 
+                            <div>
+                                <h4 class="font-bold text-slate-800">Kapasitas (<span class="code-font text-indigo-600">MAX</span>)</h4>
+                                <p class="text-sm text-slate-600">Batas maksimal elemen. Karena array statis, ukuran stack ditentukan sejak awal.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start border-t border-slate-100 pt-5">
+                            <div class="text-2xl bg-indigo-50 p-2 rounded-lg shrink-0">🎯</div> 
+                            <div>
+                                <h4 class="font-bold text-slate-800">Variabel Penunjuk <code class="text-indigo-600 bg-indigo-50 px-1 rounded">top</code></h4>
+                                <p class="text-sm text-slate-600">Sebuah angka (integer) yang menunjuk ke <b>indeks</b> elemen teratas saat ini.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="bg-amber-50 w-full p-8 rounded-2xl shadow-sm border border-amber-200">
+                        <h4 class="font-bold text-amber-700 mb-6 text-xl flex items-center gap-2"><span>⚠️</span> Dua Kondisi Penting Array:</h4>
+                        <div class="space-y-6">
+                            <div class="bg-white p-4 rounded-xl border border-amber-100">
+                                <code class="text-slate-800 font-bold bg-slate-100 px-2 py-1 rounded block mb-2 w-fit">top == -1</code> 
+                                <p class="text-sm text-slate-600">Stack <b>KOSONG</b> (karena array dimulai dari indeks 0).</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-amber-100">
+                                <code class="text-slate-800 font-bold bg-slate-100 px-2 py-1 rounded block mb-2 w-fit">top == MAX - 1</code> 
+                                <p class="text-sm text-slate-600">Stack <b>PENUH</b> (mencapai batas akhir indeks array).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: OPERASI DASAR -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">5 Operasi Dasar Stack</h2>
+            
+            <!-- Baris Pertama: 3 Kartu -->
+            <div class="grid grid-cols-3 gap-6 mb-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-t-blue-500 h-full">
+                    <h3 class="text-xl font-bold text-blue-600 code-font mb-2">📥 push(data)</h3>
+                    <p class="text-sm text-slate-600">Menyisipkan data baru di posisi paling atas (TOP) dari stack.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-t-red-500 h-full">
+                    <h3 class="text-xl font-bold text-red-600 code-font mb-2">📤 pop()</h3>
+                    <p class="text-sm text-slate-600">Mengambil & menghapus data teratas dari stack.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-t-emerald-500 h-full">
+                    <h3 class="text-xl font-bold text-emerald-600 code-font mb-2">👀 peek() / top()</h3>
+                    <p class="text-sm text-slate-600">Mengintip nilai teratas tanpa menghapusnya dari tumpukan.</p>
+                </div>
+            </div>
+
+            <!-- Baris Kedua: 2 Kartu Ditengah -->
+            <div class="grid grid-cols-2 gap-6 w-2/3 mx-auto">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-t-amber-500 h-full">
+                    <h3 class="text-xl font-bold text-amber-600 code-font mb-2">🪹 isEmpty()</h3>
+                    <p class="text-sm text-slate-600">Mengecek apakah stack sedang kosong (True/False).</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-t-purple-500 h-full">
+                    <h3 class="text-xl font-bold text-purple-600 code-font mb-2">🧱 isFull()</h3>
+                    <p class="text-sm text-slate-600">Mengecek apakah kapasitas array sudah penuh (True/False).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: OPERASI PUSH -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Detail Operasi: PUSH()</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                <!-- Kolom Kiri: Penjelasan & Kode -->
+                <div class="md:col-span-3 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold mb-4 text-slate-800 border-b border-slate-100 pb-2">Alur Logika:</h3>
+                        <ol class="list-decimal ml-5 space-y-2 text-slate-700">
+                            <li>Cek apakah stack penuh (<b>Overflow</b>).</li>
+                            <li>Jika tidak, naikkan batas TOP: <code class="text-indigo-600 font-mono bg-indigo-50 px-1 rounded">top++</code></li>
+                            <li>Simpan data di array indeks TOP: <code class="text-indigo-600 font-mono bg-indigo-50 px-1 rounded">arr[top] = data</code></li>
+                        </ol>
+                    </div>
+                    <div class="rounded-xl overflow-hidden shadow-md">
+<pre class="!m-0"><code class="code-font"><span class="keyword">void</span> <span class="func">push</span>(<span class="keyword">int</span> data) {
+    <span class="keyword">if</span> (isFull()) {
+        cout << <span class="highlight-text">"Stack Penuh!"</span>;
+    } <span class="keyword">else</span> {
+        top++;
+        arr[top] = data;
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Visualisasi -->
+                <div class="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center">
+                    <div class="text-sm font-semibold text-slate-600 mb-6 bg-slate-100 px-4 py-2 rounded-lg">Simulasi: <code class="text-blue-600">push(40)</code>, lalu <code class="text-blue-600">push(15)</code></div>
+                    <div class="stack-container" style="height: 180px;">
+                        <div class="stack-item item-inactive relative"><span class="text-xs absolute left-2 text-slate-400">[0]</span>40</div>
+                        <div class="stack-item item-active relative"><span class="text-xs absolute left-2 text-blue-200">[1]</span>15 <span class="absolute -right-20 text-sm text-blue-600 font-mono font-bold">← top=1</span></div>
+                        <div class="stack-item item-empty border-none"><span class="text-xs absolute left-2 text-slate-400">[2]</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: OPERASI POP (Sesuai Gambar User) -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-6 text-indigo-700 border-b-2 border-indigo-100 pb-4">Detail Operasi: POP()</h2>
+            
+            <div class="flex flex-col md:flex-row gap-4 mb-8">
+                <div class="flex-1 bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-center">
+                    <p class="text-sm text-slate-700">
+                        <strong>Logika:</strong> Cek Underflow ➔ Ambil nilai <code class="text-pink-600 font-mono bg-pink-50 px-1 rounded">arr[top]</code> ➔ Turunkan <code class="text-pink-600 font-mono bg-pink-50 px-1 rounded">top--</code>.
+                    </p>
+                </div>
+                <div class="flex-1 bg-amber-50 p-4 rounded-xl border border-amber-200 flex items-center">
+                    <p class="text-sm text-amber-800">
+                        ⚠️ <strong>Ingat!</strong> Fungsi pop <b>tidak menghapus fisik memori array</b>, hanya menggeser batas penunjuk (<code class="font-mono">top</code>) ke bawah.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visualisasi Pop Tiga Langkah Sejajar -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                
+                <!-- Kondisi Awal -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center">
+                    <div class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wide">Kondisi Awal</div>
+                    <div class="stack-container w-full max-w-[140px]" style="height: 200px; border-color: #94a3b8;">
+                        <div class="stack-item relative" style="background-color: #f1f5f9; border-color: #cbd5e1; color: #475569;"><span class="text-xs absolute left-2 text-slate-400">[0]</span>40</div>
+                        <div class="stack-item relative" style="background-color: #f1f5f9; border-color: #cbd5e1; color: #475569;"><span class="text-xs absolute left-2 text-slate-400">[1]</span>15</div>
+                        <div class="stack-item relative" style="background-color: #d1fae5; border-color: #cbd5e1; color: #0f766e; box-shadow: inset 0 0 0 2px #10b981;"><span class="text-xs absolute left-2 text-emerald-700">[2]</span>82 <span class="absolute -left-6 text-red-500 font-bold text-xl">▶</span></div>
+                        <div class="stack-item item-empty" style="border-color: #cbd5e1; color: #94a3b8;"><span class="text-xs absolute left-2">[3]</span>—</div>
+                    </div>
+                    <div class="mt-5 text-red-600 font-mono font-bold bg-red-50 px-3 py-1 rounded">top = 2</div>
+                </div>
+
+                <!-- Langkah 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center">
+                    <div class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wide">Panggil pop() ke-1</div>
+                    <div class="stack-container w-full max-w-[140px]" style="height: 200px; border-color: #94a3b8;">
+                        <div class="stack-item relative" style="background-color: #f1f5f9; border-color: #cbd5e1; color: #475569;"><span class="text-xs absolute left-2 text-slate-400">[0]</span>40</div>
+                        <div class="stack-item relative" style="background-color: #d1fae5; border-color: #cbd5e1; color: #0f766e; box-shadow: inset 0 0 0 2px #10b981;"><span class="text-xs absolute left-2 text-emerald-700">[1]</span>15 <span class="absolute -left-6 text-red-500 font-bold text-xl">▶</span></div>
+                        <div class="stack-item relative" style="background-color: #f8fafc; border-color: #e2e8f0; color: #94a3b8;"><span class="text-xs absolute left-2 text-slate-300">[2]</span>— <span class="text-xs absolute right-2 italic text-slate-400">(82)</span></div>
+                        <div class="stack-item item-empty" style="border-color: #cbd5e1; color: #94a3b8;"><span class="text-xs absolute left-2">[3]</span>—</div>
+                    </div>
+                    <div class="mt-5 text-red-600 font-mono font-bold bg-red-50 px-3 py-1 rounded">top: 2 → 1</div>
+                </div>
+
+                <!-- Langkah 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center">
+                    <div class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wide">Panggil pop() ke-2</div>
+                    <div class="stack-container w-full max-w-[140px]" style="height: 200px; border-color: #94a3b8;">
+                        <div class="stack-item relative" style="background-color: #d1fae5; border-color: #cbd5e1; color: #0f766e; box-shadow: inset 0 0 0 2px #10b981;"><span class="text-xs absolute left-2 text-emerald-700">[0]</span>40 <span class="absolute -right-6 text-red-500 font-bold text-xl">◀</span></div>
+                        <div class="stack-item relative" style="background-color: #f8fafc; border-color: #e2e8f0; color: #94a3b8;"><span class="text-xs absolute left-2 text-slate-300">[1]</span>— <span class="text-xs absolute right-2 italic text-slate-400">(15)</span></div>
+                        <div class="stack-item relative" style="background-color: #f8fafc; border-color: #e2e8f0; color: #94a3b8;"><span class="text-xs absolute left-2 text-slate-300">[2]</span>—</div>
+                        <div class="stack-item item-empty" style="border-color: #cbd5e1; color: #94a3b8;"><span class="text-xs absolute left-2">[3]</span>—</div>
+                    </div>
+                    <div class="mt-5 text-red-600 font-mono font-bold bg-red-50 px-3 py-1 rounded">top: 1 → 0</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: PEEK, ISEMPTY, ISFULL -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Operasi Pendukung Lainnya</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-blue-500 flex flex-col h-full">
+                    <div class="mb-auto">
+                        <h3 class="text-xl font-bold mb-2 text-blue-600 code-font">peek()</h3>
+                        <p class="text-slate-600 text-sm">Mengembalikan nilai elemen di posisi <code class="font-mono bg-slate-100 px-1 rounded">top</code> tanpa memindah posisi/menghapusnya.</p>
+                    </div>
+                    <div class="mt-6 flex flex-col items-center">
+                        <div class="stack-container" style="height: 90px; width: 100px; background-color: #f8fafc;">
+                            <div class="stack-item item-inactive" style="height: 40px;">...</div>
+                            <div class="stack-item bg-blue-500 text-white" style="height: 40px; box-shadow: 0 0 10px rgba(59,130,246,0.5);">Data</div>
+                        </div>
+                        <p class="mt-3 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">👁️ Hanya membaca nilai</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-amber-500 flex flex-col h-full">
+                    <div class="mb-auto">
+                        <h3 class="text-xl font-bold mb-2 text-amber-600 code-font">isEmpty()</h3>
+                        <p class="text-slate-600 text-sm">Mengecek kondisi kosong: <code class="font-mono bg-slate-100 px-1 rounded font-bold text-slate-800">top == -1</code></p>
+                    </div>
+                    <div class="mt-6 flex flex-col items-center">
+                        <div class="stack-container border-dashed border-slate-300 bg-transparent shadow-none" style="height: 90px; width: 100px;">
+                            <div class="stack-item item-empty border-none"></div>
+                        </div>
+                        <p class="mt-3 text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">Posisi lantai dasar</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-t-4 border-purple-500 flex flex-col h-full">
+                    <div class="mb-auto">
+                        <h3 class="text-xl font-bold mb-2 text-purple-600 code-font">isFull()</h3>
+                        <p class="text-slate-600 text-sm">Mengecek kondisi penuh: <code class="font-mono bg-slate-100 px-1 rounded font-bold text-slate-800">top == MAX - 1</code></p>
+                    </div>
+                    <div class="mt-6 flex flex-col items-center">
+                        <div class="stack-container border-red-500 bg-red-50 shadow-none" style="height: 90px; width: 100px;">
+                            <div class="stack-item bg-red-500 text-white border-white" style="height: 30px;">■</div>
+                            <div class="stack-item bg-red-500 text-white border-white" style="height: 30px;">■</div>
+                            <div class="stack-item bg-red-500 text-white border-white" style="height: 30px;">■</div>
+                        </div>
+                        <p class="mt-3 text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">Mencapai batas kapasitas</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: OVERFLOW & UNDERFLOW -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Awas Error! Overflow & Underflow</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <!-- Overflow -->
+                <div class="bg-white border border-red-200 p-8 rounded-2xl shadow-sm relative overflow-hidden flex flex-col">
+                    <div class="absolute -right-4 -bottom-4 text-9xl opacity-5">🌊</div>
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 flex items-center gap-2"><span class="text-2xl">⚠️</span> Stack Overflow</h3>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                        Memaksa memanggil <code class="font-mono font-bold bg-slate-100 px-1 rounded">push()</code> saat array sudah penuh. Program akan crash karena mencoba mengakses indeks memori yang tidak ada.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 mb-6 mt-auto text-sm italic text-slate-600">
+                        "Terus menumpuk piring sampai melewati plafon. Piringnya akan jatuh dan pecah!"
+                    </div>
+                    <div class="font-mono text-xs bg-red-600 text-white py-2 px-3 rounded text-center font-bold">Error: Index Out of Bounds</div>
+                </div>
+
+                <!-- Underflow -->
+                <div class="bg-white border border-amber-200 p-8 rounded-2xl shadow-sm relative overflow-hidden flex flex-col">
+                    <div class="absolute -right-4 -bottom-4 text-9xl opacity-5">🕳️</div>
+                    <h3 class="text-2xl font-bold text-amber-600 mb-4 flex items-center gap-2"><span class="text-2xl">🕳️</span> Stack Underflow</h3>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                        Memaksa memanggil <code class="font-mono font-bold bg-slate-100 px-1 rounded">pop()</code> atau <code class="font-mono font-bold bg-slate-100 px-1 rounded">peek()</code> saat array kosong (<code class="font-mono font-bold">top == -1</code>). Tidak ada data yang bisa diambil.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 mb-6 mt-auto text-sm italic text-slate-600">
+                        "Mencoba mengambil piring dari rak yang kosong melompong. Anda hanya menggenggam angin."
+                    </div>
+                    <div class="font-mono text-xs bg-amber-500 text-white py-2 px-3 rounded text-center font-bold">Pencegahan: Gunakan isEmpty()</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: IMPLEMENTASI PROGRAM C++ -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-6 text-indigo-700 border-b-2 border-indigo-100 pb-4">Kode Lengkap (C++)</h2>
+            <div class="bg-white p-2 rounded-2xl shadow-lg border border-slate-300">
+                <!-- Mac-like header -->
+                <div class="bg-slate-100 border-b border-slate-300 px-4 py-2 rounded-t-xl flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                    <span class="text-xs text-slate-500 font-mono ml-4">stack_array.cpp</span>
+                </div>
+                <!-- Code content -->
+                <pre class="!m-0 !rounded-none !rounded-b-xl !shadow-none max-h-[60vh] overflow-y-auto text-sm"><code class="code-font"><span class="comment">#include &lt;iostream&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="comment">#define MAX 5</span> <span class="comment">// Kapasitas stack</span>
+
+<span class="keyword">class</span> Stack {
+<span class="keyword">private</span>:
+    <span class="keyword">int</span> arr[MAX];
+    <span class="keyword">int</span> top;
+
+<span class="keyword">public</span>:
+    <span class="func">Stack</span>() { top = -1; } <span class="comment">// Constructor, top set ke -1</span>
+
+    <span class="keyword">bool</span> <span class="func">isFull</span>() { <span class="keyword">return</span> top == MAX - 1; }
+    <span class="keyword">bool</span> <span class="func">isEmpty</span>() { <span class="keyword">return</span> top == -1; }
+
+    <span class="keyword">void</span> <span class="func">push</span>(<span class="keyword">int</span> data) {
+        <span class="keyword">if</span> (isFull()) cout << <span class="highlight-text">"Stack Overflow\n"</span>;
+        <span class="keyword">else</span> {
+            top++;
+            arr[top] = data;
+        }
+    }
+
+    <span class="keyword">void</span> <span class="func">pop</span>() {
+        <span class="keyword">if</span> (isEmpty()) cout << <span class="highlight-text">"Stack Underflow\n"</span>;
+        <span class="keyword">else</span> {
+            cout << <span class="highlight-text">"Hapus: "</span> << arr[top] << endl;
+            top--;
+        }
+    }
+    <span class="comment">// ... function peek() ada disini</span>
+};
+
+<span class="keyword">int</span> <span class="func">main</span>() {
+    Stack s;
+    s.push(40); s.push(15);
+    s.pop();
+    <span class="keyword">return</span> 0;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: PENJELASAN KODE -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Penjelasan Kode Program</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <!-- Penjelasan text -->
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-indigo-500">
+                        <h4 class="font-bold text-indigo-700 mb-1">1. Deklarasi (Constructor)</h4>
+                        <p class="text-sm text-slate-600">Objek Stack dibuat, indeks memori disiapkan, dan nilai awal <code class="font-mono bg-slate-100 px-1">top = -1</code>.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-500">
+                        <h4 class="font-bold text-emerald-700 mb-1">2. Eksekusi Push</h4>
+                        <p class="text-sm text-slate-600">Pastikan <code class="font-mono text-xs">isFull() == false</code>. Lalu naikkan pointer <code class="font-mono bg-slate-100 px-1 text-xs">top++</code>, dan timpa indeks array tersebut dengan angka baru.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-red-500">
+                        <h4 class="font-bold text-red-700 mb-1">3. Eksekusi Pop</h4>
+                        <p class="text-sm text-slate-600">Pastikan <code class="font-mono text-xs">isEmpty() == false</code>. Ambil nilai di ujung array, lalu cukup turunkan pointernya <code class="font-mono bg-slate-100 px-1 text-xs">top--</code>.</p>
+                    </div>
+                </div>
+                <!-- Console Box -->
+                <div class="bg-slate-900 rounded-xl shadow-lg border border-slate-700 p-6 flex flex-col h-full font-mono text-sm text-emerald-400">
+                    <div class="text-slate-400 mb-4 border-b border-slate-700 pb-2">Output / Console:</div>
+                    <div class="space-y-1">
+                        <p>> Program dijalankan...</p>
+                        <p>> 40 ditambahkan.</p>
+                        <p>> 15 ditambahkan.</p>
+                        <p>> 82 ditambahkan.</p>
+                        <p>> Top saat ini: 82</p>
+                        <p class="text-red-400">> Hapus: 82</p>
+                        <p class="text-red-400">> Hapus: 15</p>
+                        <p>> Program selesai.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: KOMPLEKSITAS WAKTU -->
+    <div class="slide">
+        <div class="slide-content text-center flex flex-col items-center">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4 w-full text-left">Analisis Kinerja Algoritma (Kompleksitas)</h2>
+            
+            <div class="bg-white p-10 w-full max-w-3xl rounded-3xl shadow-md border border-slate-200">
+                <h3 class="text-6xl font-extrabold text-indigo-600 mb-2 code-font">O(1)</h3>
+                <p class="text-xl text-slate-500 font-medium mb-8">Waktu Konstan (Constant Time)</p>
+                
+                <div class="grid grid-cols-3 gap-4 mb-8 text-lg font-bold text-slate-700">
+                    <div class="bg-slate-50 py-3 rounded-lg border border-slate-100 flex items-center justify-center gap-2">
+                        <span class="text-emerald-500">✔</span> Push
+                    </div>
+                    <div class="bg-slate-50 py-3 rounded-lg border border-slate-100 flex items-center justify-center gap-2">
+                        <span class="text-emerald-500">✔</span> Pop
+                    </div>
+                    <div class="bg-slate-50 py-3 rounded-lg border border-slate-100 flex items-center justify-center gap-2">
+                        <span class="text-emerald-500">✔</span> Peek
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-xl text-left">
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        <b class="text-indigo-700">Sangat Cepat & Efisien!</b> Mengapa? Karena kita berinteraksi <b>langsung ke indeks array</b> (memori) menggunakan variabel penunjuk `top`. Sama sekali tidak perlu melakukan <i>looping</i> (perulangan) atau pergeseran elemen yang memakan waktu komputer.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: APLIKASI DUNIA NYATA -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Penggunaan Stack di Dunia Nyata</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex gap-4">
+                    <div class="text-3xl bg-blue-50 w-14 h-14 flex items-center justify-center rounded-xl shrink-0">↩️</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-1">Sistem Undo/Redo</h4>
+                        <p class="text-slate-600 text-sm">Setiap kali mengetik, aksi di-push. Saat Ctrl+Z, teks terakhir di-pop (dibatalkan).</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex gap-4">
+                    <div class="text-3xl bg-emerald-50 w-14 h-14 flex items-center justify-center rounded-xl shrink-0">🌐</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-1">Browser History</h4>
+                        <p class="text-slate-600 text-sm">Daftar halaman yang dikunjungi ditumpuk. Tombol "Back" mengambil halaman teratas.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex gap-4">
+                    <div class="text-3xl bg-purple-50 w-14 h-14 flex items-center justify-center rounded-xl shrink-0">⚙️</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-1">Call Stack (Pemrograman)</h4>
+                        <p class="text-slate-600 text-sm">Sistem operasi menyusun eksekusi fungsi. Fungsi yang terakhir dipanggil adalah yang pertama selesai (return).</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex gap-4">
+                    <div class="text-3xl bg-amber-50 w-14 h-14 flex items-center justify-center rounded-xl shrink-0">🧮</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-1">Evaluasi Ekspresi Matematika</h4>
+                        <p class="text-slate-600 text-sm">Membantu compiler (mesin komputer) memecahkan tanda kurung dan rumus yang rumit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: NOTASI EKSPRESI -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-6 text-indigo-700 border-b-2 border-indigo-100 pb-4">Notasi Ekspresi Aritmatika</h2>
+            <p class="text-slate-600 mb-8 bg-white p-4 rounded-xl border border-slate-200 w-fit">Manusia dan Komputer membaca rumus secara berbeda. Perhatikan letak posisi Operatornya (+, -, *, /).</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-600 mb-2">INFIX</h3>
+                        <p class="text-sm text-slate-500 mb-4 h-12">Operator di <b>Tengah</b>.<br>(Standar baca manusia)</p>
+                    </div>
+                    <div class="text-2xl font-mono text-slate-800 bg-slate-50 border border-slate-200 py-3 rounded-lg font-bold">A + B</div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-2">PREFIX</h3>
+                        <p class="text-sm text-slate-500 mb-4 h-12">Operator di <b>Depan</b>.<br>(Polish Notation)</p>
+                    </div>
+                    <div class="text-2xl font-mono text-slate-800 bg-slate-50 border border-slate-200 py-3 rounded-lg font-bold">+ A B</div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-purple-600 mb-2">POSTFIX</h3>
+                        <p class="text-sm text-slate-500 mb-4 h-12">Operator di <b>Belakang</b>.<br>(Format baca mesin)</p>
+                    </div>
+                    <div class="text-2xl font-mono text-slate-800 bg-slate-50 border border-slate-200 py-3 rounded-lg font-bold">A B +</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 16: KONVERSI NOTASI -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Konversi: Infix menjadi Postfix</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <!-- Kolom Matematika -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="text-center mb-6">
+                        <span class="text-sm text-slate-500 uppercase tracking-widest font-bold">Soal Infix</span>
+                        <div class="text-3xl font-bold text-indigo-700 code-font mt-2">(A + B) * C</div>
+                    </div>
+                    
+                    <div class="space-y-4 font-mono text-sm bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-slate-400 font-sans text-xs font-bold uppercase">Langkah 1 (Kurung Prioritas)</span>
+                            <span class="text-slate-800 text-base"><span class="text-amber-600 border-b-2 border-amber-400 pb-0.5">AB+</span> * C</span>
+                        </div>
+                        <div class="flex flex-col gap-1 mt-4">
+                            <span class="text-slate-400 font-sans text-xs font-bold uppercase">Langkah 2 (Pindah Operator)</span>
+                            <span class="text-emerald-700 font-bold bg-emerald-100 border border-emerald-200 px-3 py-2 rounded text-base">AB+C*</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kolom Penjelasan -->
+                <div class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100 h-full flex flex-col justify-center">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <p class="text-slate-700 leading-relaxed font-medium">
+                        Secara <i>behind the scene</i>, Komputer menggunakan memori <b>Stack</b> untuk menyimpan sementara operator logika (+, -, *) ini sesuai derajat prioritasnya, agar bisa diubah menjadi format <b>Postfix</b> yang langsung dapat dieksekusi secara instan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 17: KELEBIHAN DAN KEKURANGAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Kelebihan & Kekurangan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white border-t-4 border-t-emerald-500 p-8 rounded-2xl shadow-sm border-x border-b border-slate-200">
+                    <h3 class="text-xl font-bold text-emerald-700 mb-6 flex items-center gap-3">
+                        <span class="text-2xl bg-emerald-50 w-10 h-10 flex items-center justify-center rounded-full">👍</span> Kelebihan
+                    </h3>
+                    <ul class="space-y-4 text-slate-600 text-sm">
+                        <li class="flex gap-3"><span class="text-emerald-500">✔</span> Sangat <b>sederhana</b> dan mudah dikoding (diimplementasikan).</li>
+                        <li class="flex gap-3"><span class="text-emerald-500">✔</span> Sangat <b>cepat</b> dan efisien, karena kompleksitas pencariannya O(1).</li>
+                        <li class="flex gap-3"><span class="text-emerald-500">✔</span> Hemat memori karena array ukurannya tetap, tidak butuh pointer tambahan.</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white border-t-4 border-t-red-500 p-8 rounded-2xl shadow-sm border-x border-b border-slate-200">
+                    <h3 class="text-xl font-bold text-red-700 mb-6 flex items-center gap-3">
+                        <span class="text-2xl bg-red-50 w-10 h-10 flex items-center justify-center rounded-full">👎</span> Kekurangan
+                    </h3>
+                    <ul class="space-y-4 text-slate-600 text-sm">
+                        <li class="flex gap-3"><span class="text-red-500">✖</span> <b>Kapasitas Kaku:</b> Jika memori penuh, program bisa eror. Jika berlebih, memori terbuang sia-sia.</li>
+                        <li class="flex gap-3"><span class="text-red-500">✖</span> <b>Akses Terbatas:</b> Kita tidak bisa menyisipkan, menghapus, atau membaca data di tengah tumpukan. Hanya di pucuk!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 18: KESIMPULAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-100 pb-4">Kesimpulan Akhir</h2>
+            <div class="bg-white shadow-sm p-10 rounded-2xl border border-slate-200 relative overflow-hidden">
+                <!-- Aksen visual biru di kiri -->
+                <div class="absolute top-0 left-0 h-full w-2 bg-indigo-500"></div>
+                
+                <ul class="space-y-8 text-slate-700">
+                    <li class="flex gap-6 items-start">
+                        <div class="text-indigo-600 font-extrabold text-xl bg-indigo-50 w-10 h-10 flex items-center justify-center rounded-xl shrink-0 border border-indigo-100">1</div>
+                        <p class="leading-relaxed mt-1">Stack adalah logika dasar struktur memori yang berprinsip <b>LIFO (Last In First Out)</b> - masuk terakhir, keluar duluan.</p>
+                    </li>
+                    <li class="flex gap-6 items-start">
+                        <div class="text-indigo-600 font-extrabold text-xl bg-indigo-50 w-10 h-10 flex items-center justify-center rounded-xl shrink-0 border border-indigo-100">2</div>
+                        <p class="leading-relaxed mt-1">Menggunakan array, Stack bisa diprogram dengan mudah asalkan kita hati-hati menjaga batas variabel indeks <code class="font-bold text-indigo-700 font-mono">top</code>.</p>
+                    </li>
+                    <li class="flex gap-6 items-start">
+                        <div class="text-indigo-600 font-extrabold text-xl bg-indigo-50 w-10 h-10 flex items-center justify-center rounded-xl shrink-0 border border-indigo-100">3</div>
+                        <p class="leading-relaxed mt-1">Meskipun sederhana, strukturnya memegang peranan krusial sebagai fondasi di dalam sistem operasi dan aplikasi modern.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 19: PENUTUP -->
+    <div class="slide">
+        <div class="slide-content text-center flex flex-col justify-center items-center h-full">
+            <div class="w-20 h-20 mb-8 text-emerald-500 bg-emerald-50 rounded-full shadow-sm border border-emerald-100 flex items-center justify-center">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h1 class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-6">Terima Kasih!</h1>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-xs mt-8 bg-white shadow-sm border border-slate-200 px-6 py-3 rounded-full font-bold text-slate-600">
+                <span class="flex items-center gap-2 text-indigo-600">💻 TRPL</span>
+                <span class="text-slate-300">•</span>
+                <span class="flex items-center gap-2">📚 Mata Kuliah Struktur Data</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kontrol Navigasi Bawah -->
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 px-8 py-4 z-50 flex justify-between items-center shadow-[0_-5px_15px_rgba(0,0,0,0.02)]">
+        <button id="prevBtn" class="nav-btn" onclick="changeSlide(-1)">← Sebelumnya</button>
+        <span id="slideCounter" class="text-slate-600 font-mono font-bold text-sm tracking-widest">1 / 19</span>
+        <button id="nextBtn" class="nav-btn" onclick="changeSlide(1)">Selanjutnya →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        const progressBar = document.getElementById('progress-bar');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Status tombol mati/nyala
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+            
+            // Ubah teks jika di slide terakhir
+            if(currentSlide === slides.length - 1) {
+                nextBtn.innerHTML = "Selesai ✓";
+            } else {
+                nextBtn.innerHTML = "Selanjutnya →";
+            }
+
+            // Update nomor slide dan bar progress
+            slideCounter.innerText = `${currentSlide + 1} / ${slides.length}`;
+            progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateSlide();
+        }
+
+        // Navigasi dengan keyboard panah kiri/kanan
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentSlide < slides.length - 1) changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) changeSlide(-1);
+            }
+        });
+
+        // Panggil inisialisasi awal
+        updateSlide();
+    </script>
+</body>
+</html>

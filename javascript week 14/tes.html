@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function simpanData(){
+            nama=document.getElementById("nama").value;
+            nim=document.getElementById("nim").value;
+            alert("Hi, "+nama+"\n dengan NIM " +nim);
+        }
+    </script>
+</head>
+<body>
+    <form>
+    Nama:
+    <input type="text" id="nama"><br>
+    NIM:
+     <input type="text" id="nim"><br>
+     <button onclick="simpanData()">Simpan</button>
+    </form>
+</body>
+</html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="her.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EngHerna - Learn English with Herna</title>
@@ -16,28 +17,180 @@
             <li><a href="#" onclick="showSection('materials')">Materials</a></li>
             <li><a href="#" onclick="showSection('exercises')">Exercises</a></li>
             <li><a href="#" onclick="showSection('games')">Games</a></li>
+            <li><a href="#" onclick="showSection('about')">About Me</a></li>
         </ul>
         <div class="mobile-menu-toggle">☰</div>
     </nav>
 
     <!-- Main Content Container -->
     <main id="app-container">
+        <section id="about" class="view-section hidden fade-in">
+    <style>
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+
+        .developer-photo {
+            width: 100%;
+            height: 100%;
+             object-fit: cover;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .profile-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .profile-info .headline {
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .profile-info .bio-text {
+            color: var(--text-main);
+            font-size: 15px;
+            line-height: 1.7;
+            background: #fdfdfd;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px dashed #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .about-section-title {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .routine-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .routine-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            background: #f8fafc;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .routine-step span {
+            font-size: 18px;
+        }
+
+        .trivia-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .trivia-item {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* Responsif untuk Smartphone */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .profile-info {
+                text-align: center;
+            }
+            .routine-step {
+                text-align: left;
+            }
+            .trivia-grid {
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <div class="section-header">
+        <h2>Hey There! 👋</h2>
+        <p>Get to know the friendly face behind EngHerna.</p>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-image-box">
+            <img src="herna-avatar.jpeg" alt="Herna Indah" class="developer-photo">
+        </div>
         
+        <div class="profile-info">
+            <h1 class="highlight">I'm Hernawati Pardosi!</h1>
+            <p class="headline">🚀 Building fun spaces on the internet</p>
+            
+            <p class="bio-text">
+                "Welcome to my digital corner! I developed EngHerna as my final project for English class. As a Software Engineering Technology student, I wanted to combine my coding skills with language learning by creating this gamified web platform. I believe that practicing intermediate English becomes much easier when it's interactive and engaging!"
+            </p>
+
+            <div style="margin-top: 20px;">
+                <h4 class="about-section-title">Things That Make Me Smile ✨</h4>
+                <div class="trivia-grid">
+                    <div class="trivia-item">🎨 Clean & colorful designs</div>
+                    <div class="trivia-item">🥑 Healthy snacks & coding sessions</div>
+                    <div class="trivia-item">🌍 Connecting with learners worldwide</div>
+                </div>
+            </div>
+
+            <div class="profile-actions" style="margin-top: 30px;">
+                <a href="https://github.com/hernawatiindah2000pardosi-bit" target="_blank" class="btn primary-btn" style="text-decoration: none; display: inline-block;">Say Hi on GitHub! 🌟</a>
+            </div>
+        </div>
+    </div>
+</section>
+
         <!-- HOME SECTION -->
-        <section id="home" class="view-section active fade-in">
+        <section id="home" class="view-section class-active-section fade-in">
             <div class="hero">
                 <div class="hero-content">
-                    <h1>Master English <br><span class="highlight">With Confidence</span></h1>
+                    <h1>Learning English <br><span class="highlight">With Confidence</span></h1>
                     <p>Elevate your language skills with interactive materials, challenging quizzes, and fun games designed for modern learners.</p>
                     <button class="btn primary-btn" onclick="showSection('materials')">Start Learning Now</button>
                 </div>
                 <div class="hero-image">
-                    <!-- Simple CSS shape illustration -->
-                    <div class="abstract-shape">
-                        <div class="circle">A</div>
-                        <div class="square">The</div>
-                        <div class="triangle">Verb</div>
-                    </div>
+                    <div class="avatar-container">
+                <img src="herna-avatar.jpeg" alt="Herna Animation Avatar" class="avatar-character">
+                
+                <!-- Ornamen Tech Terapung di Sekitar Karakter -->
+                <div class="badge badge-1">Hi, let's go!</div>
+                <div class="badge badge-2">Boost Your <br> Skills!</div>
+            </div>
                 </div>
             </div>
         </section>
@@ -58,22 +211,19 @@
                     <button class="btn secondary-btn" onclick="openModal('modal-pos')">Study Module</button>
                 </div>
                 <!-- Material Card 2 -->
-<div class="card material-card">
-    <div class="card-icon">⏱️</div>
-    <h3>Essential Tenses</h3>
-    <p>Master Present, Past, and Future Tenses.</p>
-    <!-- Tambahkan onclick disini -->
-    <button class="btn secondary-btn" onclick="openModal('modal-tenses')">Study Module</button>
-</div>
-
-<!-- Material Card 3 -->
-<div class="card material-card">
-    <div class="card-icon">🗣️</div>
-    <h3>Daily Expressions</h3>
-    <p>Greetings, introducing yourself, and daily conversations.</p>
-    <!-- Tambahkan onclick disini -->
-    <button class="btn secondary-btn" onclick="openModal('modal-expressions')">Study Module</button>
-</div>
+                <div class="card material-card">
+                    <div class="card-icon">⏱️</div>
+                    <h3>Essential Tenses</h3>
+                    <p>Master Present, Past, and Future Tenses.</p>
+                    <button class="btn secondary-btn" onclick="openModal('modal-tenses')">Study Module</button>
+                </div>
+                <!-- Material Card 3 -->
+                <div class="card material-card">
+                    <div class="card-icon">🗣️</div>
+                    <h3>Daily Expressions</h3>
+                    <p>Greetings, introducing yourself, and daily conversations.</p>
+                    <button class="btn secondary-btn" onclick="openModal('modal-expressions')">Study Module</button>
+                </div>
             </div>
         </section>
 
@@ -109,90 +259,158 @@
                 <h2>Educational Games</h2>
                 <p>Learn while having fun!</p>
             </div>
-
-            <div class="game-container card text-center">
-                <h3>Game 1: Word Scramble</h3>
-                <p>Unscramble the letters to form a valid English word.</p>
+            
+            <!-- Menggunakan Grid layout agar kedua game rapi berdampingan/berurutan -->
+            <div class="grid-container">
                 
-                <div class="scramble-board">
-                    <h1 id="scrambled-word" class="highlight">...</h1>
-                    <p class="hint">Hint: <span id="word-hint">...</span></p>
+                <!-- GAME 1: WORD SCRAMBLE -->
+                <div class="card text-center">
+                    <h3>Game 1: Word Scramble</h3>
+                    <p style="color: var(--text-light); font-size: 14px; margin-bottom: 15px;">Unscramble the letters to form a valid English word.</p>
                     
-                    <input type="text" id="user-guess" placeholder="Enter the word..." autocomplete="off">
-                    
-                    <div class="game-controls">
-                        <button class="btn primary-btn" onclick="checkScramble()">Check Word</button>
-                        <button class="btn secondary-btn" onclick="initScramble()">Next Word</button>
-                    </div>
-                    
-                    <p id="game-feedback"></p>
-                    <div class="game-stats">
-                        <span>Score: <b id="game-score">0</b></span>
+                    <div class="scramble-board">
+                        <h1 id="scrambled-word" class="highlight">...</h1>
+                        <p class="hint" style="margin-bottom: 10px;">Hint: <span id="word-hint">...</span></p>
+                        
+                        <input type="text" id="user-guess" placeholder="Enter the word..." autocomplete="off">
+                        
+                        <div class="game-controls">
+                            <button class="btn primary-btn" onclick="checkScramble()">Check Word</button>
+                            <button class="btn secondary-btn" onclick="initScramble()">Next Word</button>
+                        </div>
+                        
+                        <p id="game-feedback" style="min-height: 24px; font-weight: 600;"></p>
+                        <div class="game-stats">
+                            <span>Score: <b id="game-score">0</b></span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- GAME 2: VOCABULARY CATCHER -->
+                <div class="card text-center" style="display: flex; flex-direction: column; align-items: center;">
+                    <h3>Game 2: Vocab Catcher</h3>
+                    <p style="color: var(--text-light); font-size: 14px; margin-bottom: 15px;">Catch the correct English translation using your cursor/touch!</p>
+                    
+                    <!-- Hint Instruksi Target -->
+                    <div id="catcher-hint-box">
+                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase;">Arti dari kata:</span>
+                        <div id="catcher-target-word">-</div>
+                    </div>
+
+                    <!-- Area Kotak Game Play -->
+                    <div id="catcher-game-area">
+                        <div id="catcher-basket">CATCH</div>
+                        
+                        <!-- Layar Game Over internal khusus game 2 -->
+                        <div id="catcher-gameover-screen">
+                            <h2 style="color: #ff4b4b; font-weight: 700; margin-bottom: 10px;">GAME OVER</h2>
+                            <p>Final Score: <span id="catcher-final-score" class="highlight" style="font-weight: bold; font-size: 20px;">0</span></p>
+                            <button class="btn primary-btn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px;" onclick="resetCatcherGame()">Play Again</button>
+                        </div>
+                    </div>
+
+                    <!-- Papan Skor Game 2 -->
+                    <div class="game-stats" style="width: 100%; display: flex; justify-content: space-around; margin-top: 15px;">
+                        <span>Score: <b id="catcher-score" class="highlight">0</b></span>
+                        <span>Lives: <b id="catcher-lives" style="color: #ff4b4b;">3</b></span>
+                    </div>
+                </div>
+
             </div>
         </section>
 
     </main>
 
-    <!-- Material Modal (Example for Parts of Speech) -->
+    <!-- Modals -->
+    <!-- MODAL MATERIAL 1: INTERMEDIATE FUNCTIONAL SYNTAX -->
     <div id="modal-pos" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-pos')">&times;</span>
-            <h2>Parts of Speech</h2>
+            <h2>Module 1: Functional Syntax & Architecture</h2>
+            <p style="color: var(--text-light); margin-bottom: 15px;">Master complex sentence configurations to describe software functionality clearly.</p>
+            
             <div class="lesson-content">
-                <h4>1. Noun</h4>
-                <p>A word that represents a person, place, thing, or idea.</p>
-                <div class="example-box"><strong>Example:</strong> Software, Engineer, Computer, City.</div>
+                <h4>1. Transition Words (Conjunctions)</h4>
+                <p>Use words like <i>although</i> and <i>however</i> to cleanly manage contrasting ideas in a single statement.</p>
+                <div class="example-box"><strong>Example:</strong> <u>Although</u> the team added new features to the platform, they still need to test the backend code.</div>
                 
-                <h4>2. Verb</h4>
-                <p>An action or state of being.</p>
-                <div class="example-box"><strong>Example:</strong> Develop, Code, Create, Is, Are.</div>
-                
-                <h4>3. Adjective</h4>
-                <p>A word that describes a noun.</p>
-                <div class="example-box"><strong>Example:</strong> Modern, Clean, Interactive, Fast.</div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal: Essential Tenses -->
-    <div id="modal-tenses" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-tenses')">&times;</span>
-            <h2>Essential Tenses</h2>
-            <div class="lesson-content">
-                <h4>1. Simple Present Tense</h4>
-                <p>Digunakan untuk kebiasaan, fakta, atau kejadian yang terjadi saat ini.</p>
-                <div class="example-box"><strong>Example:</strong> I code every day. The sun rises in the east.</div>
-                
-                <h4>2. Simple Past Tense</h4>
-                <p>Digunakan untuk kejadian yang sudah selesai di masa lalu.</p>
-                <div class="example-box"><strong>Example:</strong> I finished my project yesterday. She went to the campus.</div>
-                
-                <h4>3. Simple Future Tense</h4>
-                <p>Digunakan untuk kejadian yang akan terjadi di masa depan.</p>
-                <div class="example-box"><strong>Example:</strong> I will learn React JS tomorrow. We are going to build an app.</div>
+                <h4>2. Passive Voice Shifts</h4>
+                <p>Switch to passive voice when the action or the object being affected is more important than the person who performed it.</p>
+                <div class="example-box"><strong>Example:</strong> The production database <u>was optimized</u> to handle heavy user traffic.</div>
+
+                <h4>3. Defining Relative Clauses</h4>
+                <p>Use relative pronouns (<i>which</i> for objects, <i>who</i> for people, <i>where</i> for locations) to isolate exactly what system component you are talking about.</p>
+                <div class="example-box"><strong>Example:</strong> The API endpoint <u>which</u> Herna refactored last week is running flawlessly.</div>
+
+                <h4>4. Participle Clauses for Efficiency</h4>
+                <p>Shorten long sentence structures by using active (-ing) or passive (-ed) participle openings to describe concurrent events.</p>
+                <div class="example-box"><strong>Example:</strong> <u>Reviewing</u> the code logic, the engineering team discovered a minor state glitch.</div>
+
+                <h4>5. Cause and Effect Connectors</h4>
+                <p>Link your development problems directly to their technical outcomes using clear result indicators like <i>so</i>, <i>therefore</i>, and <i>consequently</i>.</p>
+                <div class="example-box"><strong>Example:</strong> The remote server was down, <u>therefore</u> the deployment cycle was stalled.</div>
             </div>
         </div>
     </div>
 
-    <!-- Modal: Daily Expressions -->
+    <!-- MODAL MATERIAL 2: REALISTIC TIME & CONDITIONAL MATRIX -->
+    <div id="modal-tenses" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-tenses')">&times;</span>
+            <h2>Module 2: Practical Tenses & Conditions</h2>
+            <p style="color: var(--text-light); margin-bottom: 15px;">Controlling project timelines, reporting histories, and mapping out development risks.</p>
+            
+            <div class="lesson-content">
+                <h4>1. Present Perfect vs. Simple Past</h4>
+                <p>Use Simple Past for events completed at a fixed point in the past. Use Present Perfect for continuous experiences stretching up to the current moment.</p>
+                <div class="example-box"><strong>Example:</strong> I <u>studied</u> Java last semester, but I <u>have focused</u> on Node.js and PHP recently.</div>
+                
+                <h4>2. First Conditional (Realistic Risks)</h4>
+                <p>Predict real, highly probable outcomes in the near future if specific operational criteria are met.</p>
+                <div class="example-box"><strong>Example:</strong> If the server crashes during production, the monitoring tools <u>will notify</u> us.</div>
+
+                <h4>3. Second Conditional (Hypothetical Options)</h4>
+                <p>Discuss imaginary, unrealistic, or speculative scenarios that are highly improbable under current constraints.</p>
+                <div class="example-box"><strong>Example:</strong> If we <u>had</u> an unlimited budget, we <u>would hire</u> three more remote full-stack engineers.</div>
+
+                <h4>4. Past Continuous Interruption Patterns</h4>
+                <p>Describe background tech operations or ongoing development tasks that were interrupted by sudden system events.</p>
+                <div class="example-box"><strong>Example:</strong> While Elsa <u>was designing</u> the interface layout, the system suddenly restarted.</div>
+
+                <h4>5. Modals for Recommendation & Obligation</h4>
+                <p>Calibrate how urgent your technical advice is by choosing the right modal helper (<i>should</i> for recommendations, <i>must</i> for absolute compliance).</p>
+                <div class="example-box"><strong>Example:</strong> We <u>should</u> refactor these complex functions, but we <u>must</u> update the SSL security layer today.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MATERIAL 3: TECH-TEAM COLLABORATION & EXPRESSIONS -->
     <div id="modal-expressions" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-expressions')">&times;</span>
-            <h2>Daily Expressions</h2>
+            <h2>Module 3: Workplace Collaborations & Diplomacy</h2>
+            <p style="color: var(--text-light); margin-bottom: 15px;">Communicate clearly during sprint cycles, deliver polite feedback, and manage stakeholders smoothly.</p>
+            
             <div class="lesson-content">
-                <h4>1. Greetings (Salam)</h4>
-                <p>Cara menyapa orang lain dalam situasi formal maupun kasual.</p>
-                <div class="example-box"><strong>Example:</strong> Good morning! / Hello, how are you doing? / What's up?</div>
+                <h4>1. Prioritization Idioms</h4>
+                <p>Use professional phrasing to clarify which developer tasks should take precedence during high-pressure cycles.</p>
+                <div class="example-box"><strong>On the back burner:</strong> Deliberately slowing down low-priority work to focus resources elsewhere.<br><i>"Let's put the contact UI <u>on the back burner</u> until the backend memory leak is resolved."</i></div>
                 
-                <h4>2. Introducing Yourself (Memperkenalkan Diri)</h4>
-                <p>Kalimat dasar untuk memperkenalkan diri kepada orang baru.</p>
-                <div class="example-box"><strong>Example:</strong> Hi, my name is [Name]. I am a software engineering student.</div>
-                
-                <h4>3. Asking for Help (Meminta Bantuan)</h4>
-                <p>Cara sopan untuk meminta tolong dalam bahasa Inggris.</p>
-                <div class="example-box"><strong>Example:</strong> Could you please help me with this code? / Do you mind explaining this to me?</div>
+                <h4>2. Diplomatic Disagreements</h4>
+                <p>Avoid harsh, blunt rejections during team planning sessions. Validate your peer's logic first before introducing an alternative.</p>
+                <div class="example-box"><strong>Example Frame:</strong> <u>I see your point, but</u> I think we should consider using Tailwind CSS to speed up development.</div>
+
+                <h4>3. Reframing Project Complications</h4>
+                <p>Avoid finger-pointing or emotional blame statements when a delivery deadline is missed. Use objective, analytical updates instead.</p>
+                <div class="example-box"><strong>Example:</strong> Due to unexpected <u>technical challenges</u> with the database structure, we need to adjust our timeline.</div>
+
+                <h4>4. Aligned Understanding Frames</h4>
+                <p>Ensure cross-functional teams and engineering peers share a uniform vision regarding deployment targets.</p>
+                <div class="example-box"><strong>On the same page:</strong> Sharing the exact same objective clarity.<br><i>"Before we launch the update, let's verify that we are all <u>on the same page</u> regarding code standards."</i></div>
+
+                <h4>5. Evaluating Task Complexity</h4>
+                <p>Categorize project obstacles clearly using intermediate terminology to alert team leads about project bottlenecks.</p>
+                <div class="example-box"><strong>Bottleneck vs. Breeze:</strong> A <u>bottleneck</u> stalls overall workflow speed, while a <u>breeze</u> describes a minor task that is incredibly easy to finish.</div>
             </div>
         </div>
     </div>

@@ -127,7 +127,7 @@ body {
     margin-top: 40px; /* Jarak dari atasnya */
 }
 
-/* --- TAMBAHAN CSS UNTUK PRODUK, FORM, DAN TIM --- */
+/* --- CSS UNTUK PRODUK, FORM, DAN TIM --- */
 .product-grid, .team-grid {
     display: grid; /* Bikin tata letak berbentuk kotak-kotak */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Susun kotak otomatis sesuai lebar layar */
