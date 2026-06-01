@@ -1,7 +1,7 @@
 /* Pengaturan latar belakang halaman utama */
 body {
     background-image: linear-gradient(rgba(255, 255, 255, 0.85), 
-    rgba(244, 239, 239, 0.85)),url('bg.png'); /* Gambar background dengan efek redup */url('bg.png'); /* Gambar background dengan efek redup */
+    rgba(244, 239, 239, 0.85)),url('bg.png'); /* Gambar background dengan efek redup */
     background-size: cover; /* Biar gambar menutupi layar full */
     background-position: center; /* Gambar posisinya di tengah */
     background-attachment: fixed; /* Background diam/tidak ikut turun saat di-scroll */
