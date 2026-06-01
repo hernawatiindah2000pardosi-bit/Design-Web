@@ -7,6 +7,9 @@ function showSection(sectionId) {
     });
     
     document.getElementById(sectionId).classList.remove('hidden');
+    if(window.innerWidth <= 768){
+    document.querySelector('.nav-links').classList.remove('active');
+}
     
     if (sectionId !== 'games') {
         stopCatcherGame();
@@ -363,3 +366,12 @@ function endCatcherGame() {
 function resetCatcherGame() {
     startCatcherGame();
 }
+
+/* MOBILE NAVIGATION */
+
+const menuBtn = document.querySelector('.mobile-menu-toggle');
+const navMenu = document.querySelector('.nav-links');
+
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});

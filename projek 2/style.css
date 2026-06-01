@@ -83,6 +83,31 @@
     .avatar-character {
         width: 200px;
     }
+    .mobile-menu-toggle{
+    display:block;
+}
+
+.navbar{
+    position:relative;
+}
+
+.nav-links{
+    display:none;
+    position:absolute;
+    top:80px;
+    right:20px;
+    width:220px;
+    background:white;
+    flex-direction:column;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    gap:15px;
+}
+
+.nav-links.active{
+    display:flex;
+}
 }
 
 /* --- Variables & Reset --- */
@@ -151,6 +176,20 @@ body {
 
 .nav-links a:hover { color: var(--primary-color); }
 .mobile-menu-toggle { display: none; font-size: 24px; cursor: pointer; }
+
+.logo-container{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.mobile-menu-toggle{
+    display:none;
+    font-size:28px;
+    font-weight:bold;
+    cursor:pointer;
+    color: var(--text-main);
+}
 
 /* --- Buttons --- */
 .btn {
