@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EngHerna - Learn English with Herna</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">EngHerna</div>
-         <div class="mobile-menu-toggle">☰</div>
+        <div class="logo-container">
+            <div class="logo" onclick="showSection('home')">EngHerna</div>
+        </div>
+        <div class="mobile-menu-toggle">☰</div>
+        
         <ul class="nav-links">
             <li><a href="#" onclick="showSection('home')">Home</a></li>
             <li><a href="#" onclick="showSection('materials')">Materials</a></li>
@@ -22,160 +24,43 @@
         </ul>
     </nav>
 
-    <!-- Main Content Container -->
     <main id="app-container">
-        <section id="about" class="view-section hidden fade-in">
-    <style>
-        .profile-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px;
-            background: #ffffff;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-        }
-
-        .developer-photo {
-            width: 100%;
-            height: 100%;
-             object-fit: cover;
-        }
-
-        .profile-info {
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .profile-info h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--text-main);
-        }
-
-        .profile-info .headline {
-            font-size: 16px;
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .profile-info .bio-text {
-            color: var(--text-main);
-            font-size: 15px;
-            line-height: 1.7;
-            background: #fdfdfd;
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 1px dashed #cbd5e1;
-            margin-bottom: 25px;
-        }
-
-        .about-section-title {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .routine-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .routine-step {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-main);
-            background: #f8fafc;
-            padding: 10px 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--secondary-color);
-        }
-
-        .routine-step span {
-            font-size: 18px;
-        }
-
-        .trivia-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .trivia-item {
-            background: #f0fdf4;
-            color: #166534;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid #bbf7d0;
-        }
-
-        /* Responsif untuk Smartphone */
-        @media (max-width: 768px) {
-            .profile-container {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px 20px;
-            }
-            .profile-info {
-                text-align: center;
-            }
-            .routine-step {
-                text-align: left;
-            }
-            .trivia-grid {
-                justify-content: center;
-            }
-        }
-    </style>
-
-    <div class="section-header">
-        <h2>Hey There! 👋</h2>
-        <p>Get to know the friendly face behind EngHerna.</p>
-    </div>
-
-    <div class="profile-container">
-        <div class="profile-image-box">
-            <img src="herna-avatar.jpeg" alt="Herna Indah" class="developer-photo">
-        </div>
         
-        <div class="profile-info">
-            <h1 class="highlight">I'm Hernawati Pardosi!</h1>
-            <p class="headline">🚀 Building fun spaces on the internet</p>
-            
-            <p class="bio-text">
-                "Welcome to my digital corner! I developed EngHerna as my final project for English class. As a Software Engineering Technology student, I wanted to combine my coding skills with language learning by creating this gamified web platform. I believe that practicing intermediate English becomes much easier when it's interactive and engaging!"
-            </p>
+        <section id="about" class="view-section hidden fade-in">
+            <div class="section-header">
+                <h2>Hey There! 👋</h2>
+                <p>Get to know the friendly face behind EngHerna.</p>
+            </div>
 
-            <div style="margin-top: 20px;">
-                <h4 class="about-section-title">Things That Make Me Smile ✨</h4>
-                <div class="trivia-grid">
-                    <div class="trivia-item">🎨 Clean & colorful designs</div>
-                    <div class="trivia-item">🌍 Connecting with learners worldwide</div>
+            <div class="profile-container">
+                <div class="profile-image-box">
+                    <img src="herna-avatar.jpeg" alt="Herna Indah" class="developer-photo">
+                </div>
+                
+                <div class="profile-info">
+                    <h1 class="profile-title">I'm Hernawati Pardosi!</h1>
+                    <p class="headline">🚀 Building fun spaces on the internet</p>
+                    
+                    <p class="bio-text">
+                        "Welcome to my digital corner! I developed EngHerna as my final project for English class. As a Software Engineering Technology student, I wanted to combine my coding skills with language learning by creating this gamified web platform. I believe that practicing intermediate English becomes much easier when it's interactive and engaging!"
+                    </p>
+
+                    <div style="margin-top: 25px;">
+                        <h4 class="about-section-title">THINGS THAT MAKE ME SMILE ✨</h4>
+                        <div class="trivia-grid">
+                            <div class="trivia-item">🎨 Clean & colorful designs</div>
+                            <div class="trivia-item">🌍 Connecting with learners worldwide</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions" style="margin-top: 30px;">
+                        <a href="https://github.com/hernawatiindah2000pardosi-bit" target="_blank" class="btn primary-btn" style="text-decoration: none; display: inline-block;">Say Hi on GitHub! 🌟</a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="profile-actions" style="margin-top: 30px;">
-                <a href="https://github.com/hernawatiindah2000pardosi-bit" target="_blank" class="btn primary-btn" style="text-decoration: none; display: inline-block;">Say Hi on GitHub! 🌟</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-        <!-- HOME SECTION -->
-        <section id="home" class="view-section class-active-section fade-in">
+        <section id="home" class="view-section fade-in">
             <div class="hero">
                 <div class="hero-content">
                     <h1>Learning English <br><span class="highlight">With Confidence</span></h1>
@@ -184,17 +69,14 @@
                 </div>
                 <div class="hero-image">
                     <div class="avatar-container">
-                <img src="herna-avatar.jpeg" alt="Herna Animation Avatar" class="avatar-character">
-                
-                <!-- Ornamen Tech Terapung di Sekitar Karakter -->
-                <div class="badge badge-1">Hi, let's go!</div>
-                <div class="badge badge-2">Boost Your <br> Skills!</div>
-            </div>
+                        <img src="herna-avatar.jpeg" alt="Herna Animation Avatar" class="avatar-character">
+                        <div class="badge badge-1">Hi, let's go!</div>
+                        <div class="badge badge-2">Boost Your <br> Skills!</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- MATERIALS SECTION -->
         <section id="materials" class="view-section hidden fade-in">
             <div class="section-header">
                 <h2>English Learning Materials</h2>
@@ -202,21 +84,18 @@
             </div>
             
             <div class="grid-container">
-                <!-- Material Card 1 -->
                 <div class="card material-card">
                     <div class="card-icon">📝</div>
                     <h3>Parts of Speech</h3>
                     <p>Understand Nouns, Verbs, Adjectives, and Adverbs.</p>
                     <button class="btn secondary-btn" onclick="openModal('modal-pos')">Study Module</button>
                 </div>
-                <!-- Material Card 2 -->
                 <div class="card material-card">
                     <div class="card-icon">⏱️</div>
                     <h3>Essential Tenses</h3>
                     <p>Master Present, Past, and Future Tenses.</p>
                     <button class="btn secondary-btn" onclick="openModal('modal-tenses')">Study Module</button>
                 </div>
-                <!-- Material Card 3 -->
                 <div class="card material-card">
                     <div class="card-icon">🗣️</div>
                     <h3>Daily Expressions</h3>
@@ -226,7 +105,6 @@
             </div>
         </section>
 
-        <!-- EXERCISES SECTION -->
         <section id="exercises" class="view-section hidden fade-in">
             <div class="section-header">
                 <h2>Practice Exercises</h2>
@@ -237,8 +115,7 @@
                 <div id="quiz-ui">
                     <h3 id="quiz-question">Loading question...</h3>
                     <div id="quiz-options" class="options-grid">
-                        <!-- Options injected by JS -->
-                    </div>
+                        </div>
                     <div class="quiz-footer">
                         <span id="quiz-progress">Question 1/5</span>
                     </div>
@@ -252,17 +129,13 @@
             </div>
         </section>
 
-        <!-- GAMES SECTION -->
         <section id="games" class="view-section hidden fade-in">
             <div class="section-header">
                 <h2>Educational Games</h2>
                 <p>Learn while having fun!</p>
             </div>
             
-            <!-- Menggunakan Grid layout agar kedua game rapi berdampingan/berurutan -->
             <div class="grid-container">
-                
-                <!-- GAME 1: WORD SCRAMBLE -->
                 <div class="card text-center">
                     <h3>Game 1: Word Scramble</h3>
                     <p style="color: var(--text-light); font-size: 14px; margin-bottom: 15px;">Unscramble the letters to form a valid English word.</p>
@@ -285,22 +158,18 @@
                     </div>
                 </div>
 
-                <!-- GAME 2: VOCABULARY CATCHER -->
                 <div class="card text-center" style="display: flex; flex-direction: column; align-items: center;">
                     <h3>Game 2: Vocab Catcher</h3>
                     <p style="color: var(--text-light); font-size: 14px; margin-bottom: 15px;">Catch the correct English translation using your cursor/touch!</p>
                     
-                    <!-- Hint Instruksi Target -->
                     <div id="catcher-hint-box">
                         <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase;">Arti dari kata:</span>
                         <div id="catcher-target-word">-</div>
                     </div>
 
-                    <!-- Area Kotak Game Play -->
                     <div id="catcher-game-area">
                         <div id="catcher-basket">CATCH</div>
                         
-                        <!-- Layar Game Over internal khusus game 2 -->
                         <div id="catcher-gameover-screen">
                             <h2 style="color: #ff4b4b; font-weight: 700; margin-bottom: 10px;">GAME OVER</h2>
                             <p>Final Score: <span id="catcher-final-score" class="highlight" style="font-weight: bold; font-size: 20px;">0</span></p>
@@ -308,20 +177,16 @@
                         </div>
                     </div>
 
-                    <!-- Papan Skor Game 2 -->
                     <div class="game-stats" style="width: 100%; display: flex; justify-content: space-around; margin-top: 15px;">
                         <span>Score: <b id="catcher-score" class="highlight">0</b></span>
                         <span>Lives: <b id="catcher-lives" style="color: #ff4b4b;">3</b></span>
                     </div>
                 </div>
-
             </div>
         </section>
 
     </main>
 
-    <!-- Modals -->
-    <!-- MODAL MATERIAL 1: INTERMEDIATE FUNCTIONAL SYNTAX -->
     <div id="modal-pos" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-pos')">&times;</span>
@@ -352,7 +217,6 @@
         </div>
     </div>
 
-    <!-- MODAL MATERIAL 2: REALISTIC TIME & CONDITIONAL MATRIX -->
     <div id="modal-tenses" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-tenses')">&times;</span>
@@ -383,7 +247,6 @@
         </div>
     </div>
 
-    <!-- MODAL MATERIAL 3: TECH-TEAM COLLABORATION & EXPRESSIONS -->
     <div id="modal-expressions" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-expressions')">&times;</span>
@@ -413,10 +276,10 @@
             </div>
         </div>
     </div>
-    <!-- FOOTER -->
-<footer class="footer">
-    © 2026 EngHerna | Created by Hernawati Pardosi
-</footer>
+
+    <footer class="footer">
+        © 2026 EngHerna | Created by Hernawati Pardosi
+    </footer>
 
     <script src="script.js"></script>
 </body>

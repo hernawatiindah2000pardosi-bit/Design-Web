@@ -7,16 +7,19 @@ function showSection(sectionId) {
     });
     
     document.getElementById(sectionId).classList.remove('hidden');
-    if(window.innerWidth <= 768){
-    document.querySelector('.nav-links').classList.remove('active');
-}
+    
+    // Otomatis menutup hamburger menu setelah memilih halaman di HP
+    const navMenu = document.querySelector('.nav-links');
+    if (navMenu) {
+        navMenu.classList.remove('active');
+    }
     
     if (sectionId !== 'games') {
         stopCatcherGame();
     }
     
-    if(sectionId === 'exercises') startQuiz();
-    if(sectionId === 'games') {
+    if (sectionId === 'exercises') startQuiz();
+    if (sectionId === 'games') {
         initScramble();
         startCatcherGame(); 
     }
@@ -155,7 +158,7 @@ function showResults() {
 }
 
 /* =========================================
-   4. GAME LOGIC: WORD SCRAMBLE (Workplace & Syntax Lexicon)
+   4. GAME LOGIC: WORD SCRAMBLE
 ========================================= */
 const words = [
     { word: "ALTHOUGH", hint: "Conjunction: Used to connect two contrasting or opposing ideas cleanly." },
@@ -208,7 +211,7 @@ function checkScramble() {
 }
 
 /* =========================================
-   5. GAME LOGIC: VOCAB CATCHER (Context & Meaning Match)
+   5. GAME LOGIC: VOCAB CATCHER
 ========================================= */
 const catcherDataset = [
     { id: "To make code faster and efficient", correct: "Optimize", wrongs: ["Delete", "Postpone", "Ignore", "Damage"] },
@@ -241,31 +244,32 @@ function setNextCatcherQuestion() {
     catcherTargetDisplay.textContent = catcherActiveQuestion.id;
 }
 
-catcherArea.addEventListener('mousemove', (e) => {
-    if (isCatcherGameOver) return;
-    const rect = catcherArea.getBoundingClientRect();
-    let mouseX = e.clientX - rect.left;
-    let basketX = mouseX - (catcherBasket.offsetWidth / 2);
-    
-    if (basketX < 0) basketX = 0;
-    if (basketX > catcherArea.offsetWidth - catcherBasket.offsetWidth) {
-        basketX = catcherArea.offsetWidth - catcherBasket.offsetWidth;
-    }
-    catcherBasket.style.left = basketX + 'px';
-});
+// Handler Basket Responsif (Mouse & Touch HP)
+if(catcherArea && catcherBasket) {
+    catcherArea.addEventListener('mousemove', (e) => {
+        if (isCatcherGameOver) return;
+        const rect = catcherArea.getBoundingClientRect();
+        let mouseX = e.clientX - rect.left;
+        let basketX = mouseX - (catcherBasket.offsetWidth / 2);
+        moveBasket(basketX);
+    });
 
-catcherArea.addEventListener('touchmove', (e) => {
-    if (isCatcherGameOver) return;
-    const rect = catcherArea.getBoundingClientRect();
-    let touchX = e.touches[0].clientX - rect.left;
-    let basketX = touchX - (catcherBasket.offsetWidth / 2);
-    
-    if (basketX < 0) basketX = 0;
-    if (basketX > catcherArea.offsetWidth - catcherBasket.offsetWidth) {
-        basketX = catcherArea.offsetWidth - catcherBasket.offsetWidth;
+    catcherArea.addEventListener('touchmove', (e) => {
+        if (isCatcherGameOver) return;
+        const rect = catcherArea.getBoundingClientRect();
+        let touchX = e.touches[0].clientX - rect.left;
+        let basketX = touchX - (catcherBasket.offsetWidth / 2);
+        moveBasket(basketX);
+    });
+}
+
+function moveBasket(xPos) {
+    if (xPos < 0) xPos = 0;
+    if (xPos > catcherArea.offsetWidth - catcherBasket.offsetWidth) {
+        xPos = catcherArea.offsetWidth - catcherBasket.offsetWidth;
     }
-    catcherBasket.style.left = basketX + 'px';
-});
+    catcherBasket.style.left = xPos + 'px';
+}
 
 function spawnFallingWord() {
     if (isCatcherGameOver || document.getElementById('games').classList.contains('hidden')) return;
@@ -284,7 +288,7 @@ function spawnFallingWord() {
     }
 
     catcherArea.appendChild(wordEl);
-    const randomX = Math.floor(Math.random() * (catcherArea.offsetWidth - wordEl.offsetWidth));
+    const randomX = Math.floor(Math.random() * (catcherArea.offsetWidth - 60));
     wordEl.style.left = randomX + 'px';
     wordEl.style.top = '0px';
 
@@ -363,15 +367,21 @@ function endCatcherGame() {
     catcherGameOverScreen.style.display = 'flex';
 }
 
-function resetCatcherGame() {
-    startCatcherGame();
-}
-
-/* MOBILE NAVIGATION */
-
+/* =========================================
+   6. MOBILE NAVIGATION (HAMBURGER LOGIC)
+========================================= */
 const menuBtn = document.querySelector('.mobile-menu-toggle');
 const navMenu = document.querySelector('.nav-links');
 
-menuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+if (menuBtn && navMenu) {
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        navMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+}
