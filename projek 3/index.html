@@ -18,7 +18,7 @@
             --soft-gold: #D4AF37;
             --charcoal: #2C2C2C;
             --dark-navy: #1A2433;
-             
+            
             --font-serif: 'Lora', serif;
             --font-sans: 'Inter', sans-serif;
         }
@@ -49,10 +49,6 @@
             font-weight: 400;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
         /* Utility Classes */
         .container {
             max-width: 900px;
@@ -65,8 +61,8 @@
         .mt-8 { margin-top: 2rem; }
         .mb-4 { margin-bottom: 1rem; }
         .mb-8 { margin-bottom: 2rem; }
+        .pt-8 { padding-top: 2rem; }
         .hidden { display: none !important; }
-        .opacity-0 { opacity: 0; }
         
         /* Screen Overlays */
         .screen {
@@ -75,7 +71,6 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-
             background-color: var(--cream);
             display: flex;
             flex-direction: column;
@@ -97,6 +92,7 @@
             transform: translateY(0);
             transition: all 1s ease;
         }
+
         .screen.closing {
             background-color: var(--dark-navy);
             color: var(--ivory);
@@ -118,6 +114,7 @@
             border-radius: 2px;
             margin-top: 2rem;
         }
+        
         .btn:hover {
             background: var(--muted-brown);
             color: var(--ivory);
@@ -127,6 +124,7 @@
             border-color: var(--cream);
             color: var(--cream);
         }
+        
         .dark-mode .btn:hover {
             background: var(--cream);
             color: var(--dark-navy);
@@ -138,6 +136,7 @@
             transform: translateY(40px);
             transition: opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);
         }
+        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
@@ -160,12 +159,14 @@
             justify-content: center;
             padding: 6rem 1rem;
         }
+        
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 2rem;
             color: var(--charcoal);
             text-align: center;
         }
+        
         .dark-mode .section-title { color: var(--cream); }
 
         .paragraph {
@@ -176,7 +177,8 @@
             line-height: 1.8;
             text-align: center;
         }
-        /* Animated Cards (You're 20 Now & Thank You) */
+
+        /* Animated Cards */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -206,52 +208,6 @@
             color: var(--charcoal);
         }
 
-        /* Memory Cards */
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1000px;
-            margin: 4rem auto;
-        }
-        .memory-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .memory-photo {
-            width: 100%;
-            aspect-ratio: 4/5;
-            background-color: var(--beige);
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--muted-brown);
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: transform 0.5s ease;
-        }
-
-        .memory-photo:hover {
-            transform: scale(1.02);
-        }
-
-        /* Placeholder for real images */
-        .memory-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0; /* Change to 1 when image is added */
-        }
-
         .memory-caption {
             margin-top: 1.5rem;
             font-family: var(--font-serif);
@@ -260,6 +216,8 @@
             text-align: center;
             font-style: italic;
             max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Cake Section */
@@ -324,13 +282,7 @@
             position: absolute;
             width: 6px;
             height: 35px;
-            background: repeating-linear-gradient(
-                45deg,
-                #fff,
-                #fff 4px,
-                var(--dusty-rose) 4px,
-                var(--dusty-rose) 8px
-            );
+            background: repeating-linear-gradient(45deg, #fff, #fff 4px, var(--dusty-rose) 4px, var(--dusty-rose) 8px);
             border-radius: 3px;
             bottom: 0;
             box-shadow: inset 0 -5px 5px rgba(0,0,0,0.1);
@@ -349,6 +301,7 @@
             animation: flicker 0.1s infinite alternate;
             transition: opacity 1s ease;
         }
+
         .glow {
             position: absolute;
             top: -25px;
@@ -362,6 +315,7 @@
             animation: pulse 2s infinite alternate;
             transition: opacity 1s ease;
         }
+
         .smoke {
             position: absolute;
             top: -20px;
@@ -375,13 +329,9 @@
             filter: blur(2px);
         }
 
-        .extinguished .flame, .extinguished .glow {
-            opacity: 0;
-        }
+        .extinguished .flame, .extinguished .glow { opacity: 0; }
+        .extinguished .smoke { animation: rise 3s ease-out forwards; }
 
-        .extinguished .smoke {
-            animation: rise 3s ease-out forwards;
-        }
         @keyframes flicker {
             0% { transform: translateX(-50%) scale(1) rotate(-1deg); }
             100% { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: 0.9; }
@@ -398,7 +348,7 @@
             100% { opacity: 0; transform: translate(-50%, -60px) scale(5); }
         }
 
-        /* 20 Wishes */
+        /* 20 Wishes - Fixed for Android/iOS */
         .wishes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -412,24 +362,32 @@
             width: 100%;
             aspect-ratio: 1;
             perspective: 1000px;
+            -webkit-perspective: 1000px; 
             cursor: pointer;
         }
+        
         .wish-inner {
             width: 100%;
             height: 100%;
             position: absolute;
             transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
         }
 
         .wish-card.flipped .wish-inner {
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
         }
-.wish-front, .wish-back {
+        
+        .wish-front, .wish-back {
             width: 100%;
             height: 100%;
             position: absolute;
+            top: 0;
+            left: 0;
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -445,14 +403,19 @@
             color: var(--muted-brown);
             font-family: var(--font-serif);
             font-size: 2rem;
+            z-index: 2; 
         }
 
         .wish-back {
-            background-color: var(--white, #fff);
+            background-color: #fff;
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
             color: var(--charcoal);
             font-size: 0.85rem;
             font-family: var(--font-sans);
+            padding: 0.5rem;
+            overflow: hidden;
+            word-wrap: break-word;
         }
 
         /* Audio Player */
@@ -464,9 +427,9 @@
             margin: 3rem auto;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid var(--beige);
         }
 
-        
         .audio-title {
             font-family: var(--font-serif);
             font-size: 1.2rem;
@@ -525,23 +488,6 @@
             transition: width 0.1s linear;
         }
 
-        /* Particles */
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float-up linear forwards;
-        }
-
-        @keyframes float-up {
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        
         /* Confetti */
         .confetti {
             position: absolute;
@@ -553,21 +499,30 @@
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(720deg);
-            }
+            to { transform: translateY(100vh) rotate(720deg); }
         }
 
+        /* Responsive Layouts */
         @media (max-width: 768px) {
             .section-title { font-size: 2rem; }
             .paragraph { font-size: 1rem; padding: 0 1rem; }
             section { padding: 4rem 1rem; }
-            .memory-grid { grid-template-columns: 1fr; gap: 2rem; }
             .wishes-grid { grid-template-columns: repeat(3, 1fr); }
             .cake-container { transform: scale(0.8); }
         }
+
         @media (max-width: 480px) {
-            .wishes-grid { grid-template-columns: repeat(2, 1fr); }
+            .wishes-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 1rem;
+            }
+            .wish-back {
+                font-size: 0.75rem; 
+                padding: 0.4rem;
+            }
+            .wish-front {
+                font-size: 1.5rem; 
+            }
         }
     </style>
 </head>
@@ -579,7 +534,7 @@
             <p class="paragraph">Before you leave, I have something small for you.</p>
             <button id="open-btn" class="btn">Open this</button>
         </div>
-        </div>
+    </div>
 
     <main id="main-content" class="hidden">
         
@@ -618,8 +573,7 @@
                     <p>20 years and so much more ahead.</p>
                 </div>
             </div>
-
-            </section>
+        </section>
 
         <!-- Things I Still Remember -->
         <section id="memories" class="container">
@@ -627,8 +581,7 @@
                 <h2 class="section-title">Things I Still Remember</h2>
                 <p class="paragraph">Some moments become memories before we even realize it. I might not remember every single detail, but I remember how certain moments felt.</p>
             </div>
-                    <p class="memory-caption">"A chapter ending doesn't make that chapter meaningless.<br> Quiet moments that spoke volumes without saying a word. <br> Grateful that these memories stay quietly beautiful."</p>
-                    
+            <p class="memory-caption">"A chapter ending doesn't make that chapter meaningless.<br> Quiet moments that spoke volumes without saying a word. <br> Grateful that these memories stay quietly beautiful."</p>
         </section>
 
         <!-- Thank You -->
@@ -647,7 +600,7 @@
                 <div class="text-card">
                     <p>Thank you for being part of a chapter I will always remember warmly.</p>
                 </div>
-                </div>
+            </div>
         </section>
 
         <!-- Cake Scene -->
@@ -711,7 +664,7 @@
                     Take care of yourself out there.
                 </p>
             </div>
-            </section>
+        </section>
 
         <!-- 20 Wishes For 20 -->
         <section id="twenty-wishes" class="container reveal">
@@ -719,6 +672,30 @@
             <p class="paragraph">Tap a number.</p>
             <div class="wishes-grid" id="wishes-container">
                 <!-- Wishes generated by JS -->
+            </div>
+        </section>
+
+        <!-- A Song For This Moment (Music Player) -->
+        <section id="song" class="container reveal text-center">
+            <h2 class="section-title">A Song For This Moment</h2>
+            <p class="paragraph">Maybe this song will remind you of this little moment.</p>
+            
+            <div class="audio-player">
+                <p class="audio-title">Your Song Title</p>
+                <p class="audio-subtitle">Artist Name</p>
+                
+                <!-- GANTI "your-song.mp3" DENGAN FILE MUSIKMU (Contoh: "lagu.mp3") -->
+                <audio id="custom-audio" src="your-song.mp3"></audio>
+                
+                <div class="controls">
+                    <button id="play-btn" class="play-btn">
+                        <!-- Play Icon SVG -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </button>
+                </div>
+                <div id="progress-container" class="progress-bar">
+                    <div id="progress-fill" class="progress"></div>
+                </div>
             </div>
         </section>
 
@@ -774,10 +751,9 @@
                 setTimeout(() => {
                     introScreen.style.display = 'none';
                     mainContent.classList.remove('hidden');
-                    // Small delay to allow display:block to render before opacity fades in
                     setTimeout(() => {
                         mainContent.classList.add('visible');
-                        triggerReveal(); // Check reveals on load
+                        triggerReveal();
                     }, 50);
                 }, 1000);
             });
@@ -790,10 +766,7 @@
                     mainContent.style.opacity = '0';
                 }, 50);
 
-                // Pause audio if playing
-                if(audio && !audio.paused) {
-                    audio.pause();
-                }
+                if(audio && !audio.paused) audio.pause();
             });
 
             // --- Scroll Reveal Animation ---
@@ -811,7 +784,7 @@
             }
             window.addEventListener('scroll', triggerReveal);
 
-            // --- STREAMING_CHUNK:JavaScript - 20 Wishes Array & Logic ---
+            // --- 20 Wishes Array & Logic ---
             const wishesData = [
                 "More reasons to smile", "A peaceful mind", "Good people around you", 
                 "Courage to chase what matters", "A year full of unexpected good things", 
@@ -833,7 +806,7 @@
                         <div class="wish-front">${index + 1}</div>
                         <div class="wish-back">${wishText}</div>
                     </div>
-                    `;
+                `;
                 
                 card.addEventListener('click', () => {
                     card.classList.toggle('flipped');
@@ -842,8 +815,7 @@
                 wishesContainer.appendChild(card);
             });
 
-            // --- STREAMING_CHUNK:JavaScript - Interactive Cake Logic ---
-            // Cake Logic
+            // --- Interactive Cake Logic ---
             const candlesContainer = document.getElementById('candles');
             const blowBtn = document.getElementById('blow-btn');
             const relightBtn = document.getElementById('relight-btn');
@@ -851,28 +823,26 @@
             const cakeScene = document.getElementById('cake-scene');
             let isBlownOut = false;
             let audioContext, microphone, analyser;
-             // Generate 20 candles in an elliptical arrangement
+            
             function createCandles() {
                 candlesContainer.innerHTML = '';
                 for (let i = 0; i < 20; i++) {
                     const candle = document.createElement('div');
                     candle.className = 'candle';
                     
-                    // Math for elliptical positioning
                     const angle = (i / 20) * Math.PI * 2;
                     const radiusX = 100;
                     const radiusY = 30;
                     
-                    const x = Math.cos(angle) * radiusX + 130; // Center is ~130
+                    const x = Math.cos(angle) * radiusX + 130; 
                     const y = Math.sin(angle) * radiusY; 
                     
-                    // Randomize height slightly for realism
                     const height = 30 + Math.random() * 10;
 
                     candle.style.left = `${x}px`;
                     candle.style.bottom = `${y + 10}px`;
                     candle.style.height = `${height}px`;
-                    candle.style.zIndex = Math.round(y + 50); // Depth sorting
+                    candle.style.zIndex = Math.round(y + 50); 
 
                     candle.innerHTML = `
                         <div class="glow" style="animation-delay: ${Math.random()}s"></div>
@@ -903,8 +873,7 @@
                 if (isBlownOut) return;
                 isBlownOut = true;
                 const candles = document.querySelectorAll('.candle');
-                candles.forEach((c, index) => {
-                    // Stagger the extinguish effect slightly for realism
+                candles.forEach((c) => {
                     setTimeout(() => {
                         c.classList.add('extinguished');
                     }, Math.random() * 500);
@@ -920,7 +889,6 @@
                     triggerConfetti();
                 }, 1500);
 
-                // Stop mic processing if active
                 if(audioContext) audioContext.suspend();
             }
 
@@ -941,8 +909,8 @@
 
             blowBtn.addEventListener('click', blowOutCandles);
             relightBtn.addEventListener('click', relightCandles);
-// --- STREAMING_CHUNK:JavaScript - Microphone Web Audio API ---
-            // Optional Mic Interaction
+
+            // --- Microphone Web Audio API ---
             async function setupMic() {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
@@ -964,7 +932,6 @@
                             }
                             const average = sum / bufferLength;
                             
-                            // Threshold for blowing sound (adjust based on testing)
                             if (average > 60) { 
                                 blowOutCandles();
                             }
@@ -973,11 +940,10 @@
                     }
                     checkVolume();
                 } catch (err) {
-                    console.log("Mic access denied or unsupported. Button works as fallback.", err);
+                    console.log("Mic access denied or unsupported. Button works as fallback.");
                 }
             }
             
-            // Only ask for mic when they reach the cake section to be polite
             const cakeObserver = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting && !audioContext) {
                     setupMic();
@@ -985,8 +951,7 @@
             }, { threshold: 0.5 });
             cakeObserver.observe(cakeScene);
 
-            // --- STREAMING_CHUNK:JavaScript - Custom Audio Player Logic ---
-            // Audio Player Logic
+            // --- Custom Audio Player Logic ---
             const audio = document.getElementById('custom-audio');
             const playBtn = document.getElementById('play-btn');
             const progressContainer = document.getElementById('progress-container');
@@ -994,18 +959,19 @@
             let isPlaying = false;
 
             playBtn.addEventListener('click', () => {
-                // If src is empty/invalid, this will throw an error, so wrap in try catch
                 try {
                     if (isPlaying) {
                         audio.pause();
-                        playBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5V19L19 12L8 5Z" fill="currentColor"/></svg>`;
+                        // Ikon Play
+                        playBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
                     } else {
                         audio.play();
-                        playBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="currentColor"/></svg>`;
+                        // Ikon Pause
+                        playBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`;
                     }
                     isPlaying = !isPlaying;
                 } catch (e) {
-                    console.log("Please add a valid audio file to the src attribute.");
+                    console.log("Pastikan file audio tersedia.");
                 }
             });
 
@@ -1023,7 +989,6 @@
                 }
             });
 
-            // End of script
         });
     </script>
 </body>
