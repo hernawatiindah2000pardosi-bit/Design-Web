@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOTO KITA BLUR (TREND)</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div id="start-screen" class="start-screen">
+        <div class="start-card">
+            <h1>FOTO KITA BLUR (TREND)</h1>
+            <p>Klik tombol di bawah untuk memulai trend</p>
+            <button id="play-btn" class="play-btn">▶ (PLAY)</button>
+        </div>
+    </div>
+
+    <div id="app-container" class="app-container hidden">
+        <div class="camera-box">
+            <video id="webcam" autoplay playsinline mirrored></video>
+            <div id="status-loading">Kamera</div>
+        </div>
+
+        <div class="scroll-container" id="scrollContainer">
+            <div class="scroll-wrapper" id="scrollWrapper">
+                <p>Foto kita blur...</p>
+                <p>tak banyak yang kulihat</p>
+                <p>Foto kita blur...</p>
+                <p>tapi banyak yang aku ingat</p>
+                <p>Foto kita blur...</p>
+                <p>kita pernah begitu dekat</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
